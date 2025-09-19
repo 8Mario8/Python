@@ -46,3 +46,19 @@ total_potencia=var1**var2
 print("El resultado de la potencia es:", total_potencia)
 
 #División entera
+print("DIVISIÓN ENTERA")
+var1=float(input("Introduce un número: "))
+var2=float(input("Introduce otro número: "))
+print(var1)
+print(var2)
+total_división_entera=var1//var2
+print("El resultado de la división entera es:", total_división_entera)
+
+#Módulo
+print("MÓDULO")
+var1=float(input("Introduce un número: "))
+var2=float(input("Introduce otro número: "))
+print(var1)
+print(var2)
+total_módulo=var1%var2
+print("El resultado del módulo es:", total_módulo)
