@@ -2,4 +2,4 @@
 horas = float(input("Introduce el número de horas: "))
 minutos = horas*60
 segundos = horas*3600
-print( horas, "horas son equivalentes a", minutos, "minutos o", segundos, "segundos.")
+print(horas, "horas son equivalentes a", minutos, "minutos o", segundos, "segundos.")
