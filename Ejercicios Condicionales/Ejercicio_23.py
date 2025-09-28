@@ -6,10 +6,10 @@ else:
     if nota<5:
         print("Tu nota es un ", nota, ", has sacado un insuficiente.")
     else:
-        if nota<6.5 or nota==5:
+        if nota<6.5 and nota==5:
             print("Tu nota es un ", nota, ", has sacado un sufuciente.")
         else:
-            if nota>=6.5 or nota<8.5:
+            if nota>=6.5 and nota<8.5:
                 print("Tu nota es un ", nota, ", has sacado un notable.")
             else:
                 print("Tu nota es un ", nota, ", has sacado un excelente.")
