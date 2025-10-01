@@ -1,11 +1,9 @@
 #31. Asigna a una variable de texto la siguiente frase: A quién madruga Dios ayuda. Comprueba si existen las siguientes palabras mostrando por pantalla la posición de su índice.
+def buscar_palabra(frase, palabra):
 frase="A quién madruga Dios ayuda."
-palabras=["quién", "Dios", "ayuda", "madruga", "tarde"]
+palabras=["A", "quién", "Dios", "ayuda", "madruga"]
 palabra=input("Introduce una palabra para buscar en la frase: ")
-
-for palabra in palabras:
-    indice=frase.find(palabra)
-    if indice!=-1:
-        print(f"La palabra '{palabra}' se encuentra en el índice {indice}.")
-    else:
-        print(f"La palabra '{palabra}' no se encuentra en la frase.") 
+if buscar_palabra(frase, palabra):
+    print(f"La palabra '{palabra}' está en la frase.")
+else:
+    print(f"La palabra '{palabra}' NO está en la frase.")
