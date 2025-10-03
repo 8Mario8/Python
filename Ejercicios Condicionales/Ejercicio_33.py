@@ -1,10 +1,11 @@
 #33. Programa un código que permita contar el número de vocales de la siguiente frase: No hay mal que dure cien años
-frase="No hay mal que dure cien años"
-vocales="aeiouAEIOU"
-contador=0
-for letra in frase:
-    if letra in vocales:
-        contador+=1
-        print(f"El número total de vocales es {contador}")
-        for v in "aeiou":
-            print(f"El número de {v} es {frase.lower().count(v)}", end=" ")
+def contar_vocales_individual(frase):
+    vocales = "aeiou"
+    conteo = {v: 0 for v in vocales}
+    for char in frase.lower():
+        if char in conteo:
+            conteo[char] += 1
+    return conteo 
+frase = "No hay mal que dure cien años"
+conteo = contar_vocales_individual(frase)
+print(f"El número de a es {conteo['a']} el número de e es {conteo['e']} el número de i es {conteo['i']} el número de o es {conteo['o']} y el número de u es {conteo['u']}")

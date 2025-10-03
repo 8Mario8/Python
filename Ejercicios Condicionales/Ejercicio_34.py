@@ -4,7 +4,7 @@ var_numero = 6734
 var_suma = 0
 # obtengo su longitud
 var_longitud = len(str(var_numero))
-# sumo cada digito a partir del índice de cada posición
+# sumo cada dígito a partir del índice de cada posición
 var_suma = int(str(var_numero)[0]) + int(str(var_numero)[1]) + int(str(var_numero)[2]) + int(str(var_numero)[3])
 # utilizo una condición y el operador aritmético % para saber si el resto da 0 y ver si es par
 if var_suma % 2 == 0:
