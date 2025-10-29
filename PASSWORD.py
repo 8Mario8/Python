@@ -11,4 +11,10 @@ print("Posició 5: Una lletra minúscula")
 print("Posició 6: Un número major o igual que 6 i menor o igual que 9")
 print("Posició 7: Un dels següents símbols &, /, #")
 print("Posició 8: Un número menor o igual que 5")
+## Demanar a l'usuari que introdueixi la contrasenya y donar valor a la variable
 password=input("Introdueix una contrasenya: ")
+## Comprovar si la contrasenya compleix les instruccions
+### Comprovar si la contrasenya compleix amb la longitud establerta
+if not int(len(password)) <=8 and not int(len(password)) >=6:
+    print("Error, el password té una longitud de", int(len(password)), "caràcters i no compleix els requisits")
+    
