@@ -18,49 +18,50 @@ password=input("Introdueix una contrasenya: ")
 n = len(password)
 if n < 6 or n > 8:
     print("Error, el password té una longitud de", n, "caràcters i no compleix els requisits")
+### Comprovar si la contrasenya compleix amb els valors establerts per a cada posició
 else:
     errors = []
-    # Posició 1 (index 0): número entre 1 i 5
+    # Comprovar si la posició 1 compeix que ha de ser un número entre 1 i 5
     if n >= 1:
         c = password [0]
         if not (c.isdigit() and 1 <= int(c) <= 5):
             errors.append("Error en el caràcter 1")
-    # Posició 2 (index 1): lletra minúscula
+    # Comprovar si la posició 2 compeix que ha de ser una lletra minúscula
     if n >= 2:
         c = password [1]
         if not (c.isalpha() and c.islower()):
             errors.append("Error en el caràcter 2")
-    # Posició 3 (index 2): lletra majúscula
+    # Comprovar si la posició 3 compeix que ha de ser una lletra majúscula
     if n >= 3:
         c = password [2]
         if not (c.isalpha() and c.isupper()):
             errors.append("Error en el caràcter 3")
-    # Posició 4 (index 3): símbol *, _, @
+    # Comprovar si la posició 4 compeix que ha de ser un dels símbols *, _, @
     if n >= 4:
         c = password [3]
         if c not in ("*", "_", "@"):
             errors.append("Error en el caràcter 4")
-    # Posició 5 (index 4): lletra minúscula
+    # Comprovar si la posició 5 compeix que ha de ser una lletra minúscula
     if n >= 5:
         c = password [4]
         if not (c.isalpha() and c.islower()):
             errors.append("Error en el caràcter 5")
-    # Posició 6 (index 5): número entre 6 i 9
+    # Comprovar si la posició 6 compeix que ha de ser un número entre 6 i 9
     if n >= 6:
         c = password [5]
         if not (c.isdigit() and 6 <= int(c) <= 9):
             errors.append("Error en el caràcter 6")
-    # Posició 7 (index 6): símbol &, /, #
+    # Comprovar si la posició 7 compeix que ha de ser un dels símbols &, /, #
     if n >= 7:
         c = password [6]
         if c not in ("&", "/", "#"):
             errors.append("Error en el caràcter 7")
-    # Posició 8 (index 7): número menor o igual que 5 (0-5)
+    # Comprovar si la posició 8 compeix que ha de ser un número menor o igual que 5
     if n >= 8:
         c = password [7]
         if not (c.isdigit() and 0 <= int(c) <= 5):
             errors.append("Error en el caràcter 8")
-    # Mostrar resultats
+    # Mostrar els resultats
     if errors:
         for e in errors:
             print(e)
