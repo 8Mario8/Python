@@ -1,11 +1,13 @@
-#37. Programa que pregunte cuantas notas quiero introducir y para cada nota diga si estoy aprobado o suspendido.
+#38. A partir del programa anterior, establece los rangos para que el usuario no pueda introducir notas inferiores a 0 y superiores a 10 
 num_notas = float(input("Introduce el número de notas que deseas introducir: "))
 if num_notas != int(num_notas):
     print("Error")
 else:
     for i in range(int(num_notas)):
         nota = float(input("Introduce la nota: "))
-        if nota >= 5:
+        if nota < 0 or nota > 10:
+            print("Has introducido una nota equivocada")
+        elif nota >= 5:
             print("Asignatura aprobada")
         else:
             print("Asignatura suspendida")
