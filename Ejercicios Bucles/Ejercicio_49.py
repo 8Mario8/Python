@@ -4,6 +4,7 @@ for i in range(len(secret)):
     letra=input("Introduce una letra: ")
     if letra in secret:
         for j in range(len(secret)):
-            print("La letra se encuentra en la posición", j+1)
+            if secret[j] in letra:
+                print("La letra se encuentra en la posición", j+1)
     else:
         print("La letra no existe")
