@@ -14,6 +14,5 @@ num=int(input("Introduce un número del 1 al 20: "))
 while num_secret!=num:
     print("Vaya, no has acertado. :(")
     num=int(input("Introduce un número del 1 al 20: "))
-print("Enorabuena, has acertado!!! :)")
-if num<1 and num>20:
-    
+    if num<1 and num>20:
+        print("Enorabuena, has acertado!!! :)")
