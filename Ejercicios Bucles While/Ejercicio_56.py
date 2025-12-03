@@ -24,9 +24,54 @@
 ##2. Acuarius - 1.5 €
 ##3. Agua - 1 €"
 
+coste_menu = 0
+coste_acompañamiento = 0
+coste_bebidas = 0
+
 print("MENÚ")
 print("1. Bocadillo de calamares - 9€")
 print("2. Bocadillo de chistorra - 4.5€")
 print("3. Bikini de jamón - 2.5€")
 
-menu=int(input("Introduce el numero del menu que quiere consumir: "))
+menu = int(input("Introduce el número del menú que quiere consumir: "))
+
+if menu == 1:
+    coste_menu = coste_menu + 9
+elif menu == 2:
+    coste_menu = coste_menu + 4.5
+elif menu == 3:
+    coste_menu = coste_menu + 2.5
+else:
+    print("Número de menú imcorrecto")
+
+print("ACOMPAÑAMIENTO")
+print("1. Patatas finas - 1.5€")
+print("1. Patatas gruesas - 1.75€")
+print("1. Patatas rústicas - 2€")
+
+acompañamiento = int(input("Introduce el número del acompañamiento que quiere consumir: "))
+
+if acompañamiento == 1:
+    coste_acompañamiento = coste_acompañamiento + 1.5
+elif acompañamiento == 2:
+    coste_acompañamiento = coste_acompañamiento + 1.75
+elif acompañamiento == 3:
+    coste_acompañamiento == coste_acompañamiento + 2
+else:
+    print("Número de acompañamiento incorrecto")
+
+print("BEBIDAS")
+print("1. Coca cola - 2€")
+print("2. Acuarius - 1.5€")
+print("3. Agua - 1€")
+
+bebidas = int(input("Introduce el número de la bebida que quiere consumir: "))
+
+if bebidas == 1:
+    coste_bebidas = coste_bebidas + 2
+elif bebidas == 2:
+    coste_bebidas = coste_bebidas + 1.5
+elif bebidas == 3:
+    coste_bebidas = coste_bebidas + 1
+else:
+    print("Número de bebida incorrecto")
