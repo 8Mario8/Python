@@ -24,54 +24,91 @@
 ##2. Acuarius - 1.5 €
 ##3. Agua - 1 €"
 
-coste_menu = 0
-coste_acompañamiento = 0
-coste_bebidas = 0
+pedido_count = 0
+total_sin_iva = 0
+precios_menu = 0
+precios_acompanamientos = 0
+precios_bebidas = 0
+menu = 0
+acompanamiento = 0
+bebida = 0
 
-print("MENÚ")
-print("1. Bocadillo de calamares - 9€")
-print("2. Bocadillo de chistorra - 4.5€")
-print("3. Bikini de jamón - 2.5€")
+while True:
+    while menu not in [1, 2, 3]:
+        print("MENÚ:")
+        print("1. Bocadillo de calamares - 9 €")
+        print("2. Bocadillo de chistorra - 4.5 €")
+        print("3. Bikini de jamón - 2.5 €")
 
-menu = int(input("Introduce el número del menú que quiere consumir: "))
+        menu = int(input("Selecciona el menú (1-3): "))
 
-if menu == 1:
-    coste_menu = coste_menu + 9
-elif menu == 2:
-    coste_menu = coste_menu + 4.5
-elif menu == 3:
-    coste_menu = coste_menu + 2.5
+        if menu not in [1, 2, 3]:
+            print("Opción no válida. Intentelo de nuevo.")
+
+    while acompanamiento not in [1, 2, 3]:
+        print("ACOMPAÑAMIENTOS:")
+        print("1. Patatas finas - 1.5 €")
+        print("2. Patatas gruesas - 1.75 €")
+        print("3. Patatas rústicas - 2 €")
+
+        acompanamiento = int(input("Selecciona el acompañamiento (1-3): "))
+
+        if acompanamiento not in [1, 2, 3]:
+            print("Opción no válida. Intentelo de nuevo.")
+    
+    while bebida not in [1, 2, 3]:
+        print("BEBIDAS:")
+        print("1. Coca cola - 2 €")
+        print("2. Acuarius - 1.5 €")
+        print("3. Agua - 1 €")
+        
+        bebida = int(input("Selecciona la bebida (1-3): "))
+
+        if bebida not in [1, 2, 3]:
+            print("Opción no válida. Intentelo de nuevo.")
+    
+### Precios
+    if menu == 1:
+        precios_menu += 9
+    elif menu == 2:
+        precios_menu += 4.5
+    else:
+        precios_menu += 2.5
+
+    if acompanamiento == 1:
+        precios_acompanamientos += 1.5
+    elif acompanamiento == 2:
+        precios_acompanamientos += 1.75
+    else:
+        precios_acompanamientos += 2
+
+    if bebida == 1:
+        precios_bebidas += 2
+    elif bebida == 2:
+        precios_bebidas += 1.5
+    else:
+        precios_bebidas += 1
+    
+    total_pedido = precios_menu + precios_acompanamientos + precios_bebidas
+    total_sin_iva += total_pedido
+    pedido_count += 1
+    
+    repetir = input("¿Deseas gestionar otro pedido? (s/n): ")
+    if repetir.lower() == 'n':
+        break
+
+iva = total_sin_iva * 0.10
+total_con_iva = total_sin_iva + iva
+if total_sin_iva > 30:
+    descuento = total_sin_iva * 0.15
+elif total_sin_iva >= 20:
+    descuento = total_sin_iva * 0.05
 else:
-    print("Número de menú imcorrecto")
-
-print("ACOMPAÑAMIENTO")
-print("1. Patatas finas - 1.5€")
-print("1. Patatas gruesas - 1.75€")
-print("1. Patatas rústicas - 2€")
-
-acompañamiento = int(input("Introduce el número del acompañamiento que quiere consumir: "))
-
-if acompañamiento == 1:
-    coste_acompañamiento = coste_acompañamiento + 1.5
-elif acompañamiento == 2:
-    coste_acompañamiento = coste_acompañamiento + 1.75
-elif acompañamiento == 3:
-    coste_acompañamiento == coste_acompañamiento + 2
-else:
-    print("Número de acompañamiento incorrecto")
-
-print("BEBIDAS")
-print("1. Coca cola - 2€")
-print("2. Acuarius - 1.5€")
-print("3. Agua - 1€")
-
-bebidas = int(input("Introduce el número de la bebida que quiere consumir: "))
-
-if bebidas == 1:
-    coste_bebidas = coste_bebidas + 2
-elif bebidas == 2:
-    coste_bebidas = coste_bebidas + 1.5
-elif bebidas == 3:
-    coste_bebidas = coste_bebidas + 1
-else:
-    print("Número de bebida incorrecto")
+    descuento = 0
+total_con_descuento = total_sin_iva - descuento
+print("Número de pedidos realizados: ", pedido_count)
+print("Total a pagar sin IVA: {:.2f} €".format(total_sin_iva))
+print("Total con IVA (10%): {:.2f} €".format(total_con_iva))
+print("Total con descuento aplicado: {:.2f} €".format(total_con_descuento))
+print("Finalizando programa...")
+    
