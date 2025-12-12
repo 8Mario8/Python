@@ -24,3 +24,86 @@ EJERCICIOS CONDICIONALES
 19. Programa que introduzca dos números y devuelva cuál de los dos es mayor, menor o son iguales
 20. A partir del ejercicio anterior, forzar que el usuario solo pueda introducir por teclados números entre 0 y 10
 21. Programa que calcula una ecuación de segundo grado. Controla que el valor de la raíz cuadrada no de un valor negativo
+22. Programa que al introducir una nota por teclado te diga si has aprobado o suspendido. Si la nota es menos de un 5 es suspenso y si la nota es 5 o mayor estás aprobado.
+23. Modifica el programa anterior para establecer si la nota es un excelente (8.5 a 10), un notable (>=6.5 -<8.5), satisfactorio (<6.5 -5) o insuficiente (<5). Controla que la nota introducida esté entre 0 y 10. Utilizar elif sin operadores lógicos.
+24. Corrige los errores del siguiente código y comprueba que se ejecuta correctamente
+25. Repite el programa número 23 pero en esta ocasión utilizando operadores lógicos.
+26. Realiza un programa que, al introducir una letra por teclado, aparezca por pantalla si está o no en mayúscula. Utiliza dos IF’s que establezcan True o False a la condición.
+27. Mejora el programa anterior para controlar que el valor introducido es una letra y en caso de introducir un número, aparezca un aviso por pantalla
+28. Mejora el programa anterior para controlar también la introducción de símbolos. Utiliza elif.
+29. Busca Internet qué función permite obtener la longitud de un String, realiza un programa que al introducir una frase devuelva la longitud
+30. Realiza un programa que controle si la longitud de una frase introducida por teclado esigual, menor o mayor de 11 caracteres. Utiliza elif
+31. Asigna a una variable de texto la siguiente frase: A quién madruga Dios ayuda. Comprueba si existen las siguientes palabras mostrando por pantalla la posición de su índice.
+32. Cómo solucionarías con ayuda de métodos String el problema del ejercicio anterior para no distinguir entre mayúsculas y minúsculas
+33. Programa un código que permita contar el número de vocales de la siguiente frase: No hay mal que dure cien años
+34. Corrige los 4 errores o añade el código que necesites para que el siguiente programa se ejecute correctamente
+
+BUCLES CON FOR
+35. Programa que al introducir un número por teclado permita mostrar ese número de veces tu nombre
+36. Programa que sume los n primeros números naturales. n Lo introduce el usuario.
+37. Programa que pregunte cuantas notas quiero introducir y para cada nota diga si estoy aprobado o suspendido.
+38. A partir del programa anterior, establece los rangos para que el usuario no pueda introducir notas inferiores a 0 y superiores a 10
+39. Programa que pida n números y que, tras introducir el último número, debe aparecer por pantalla el número total de positivos, negativos y número de 0.
+40. Crea un programa que cuente todos los números pares hasta el número 50
+41. Imprime el siguiente patrón utilizando for:
+42. Imprima el siguiente patrón con el ciclo for. 
+43. Realiza un programa que recorra con un for una palabra introducida por teclado y se imprima por pantalla cada letra
+44. Realiza un programa que recorra todos los números comprendidos de 0 a 100 realizando saltos de 3 en 3. El resultado debe aparecer por pantalla en una línea con los números separados por ‘,’
+45. Realiza un programa que permita introducir una palabra por teclado y puedas recorrer el string distinguiendo vocales y las consonantes:
+46. A partir del programa anterior, soluciona el error que se produce en el test anterior con la palabra Abrigo utilizando únicamente una instrucción.
+47. Realiza un programa donde el usuario introduzca por teclado 2 intervalos, por pantalla se debe mostrar el rango de números teniendo en cuenta que se a<b la secuencia será incremental y si a>b la secuencia en descenso. Respeta el formato de salida
+48. Realiza un programa que introduzcas por teclado una palabra ‘secreta’, consigue la longitud de esa palabra para que sea ese el criterio que establezca el rango del bucle de manera que el usuariotenga x oportunidades para ver si letra introducida está en esa palabra.
+49. A partir del programa anterior, modifica el código para que al introducir la letra por teclado te indique en qué posición de la palabra se encuentra la letra.
+
+BUCLES CON WHILE
+50. Realiza un programa que de los buenos días 3 veces. Con While
+51. A partir del programa anterior, modifica el código para que sea el usuario quién introduzca el número de veces que desea que repita la frase Buenos días. Con While
+52. Realiza un programa que sume dos números enteros por teclado y presente el resultado por pantalla. El programa preguntará si deseas o no repetir la operación. Con While
+53. A partir del código anterior, haz que aparezca al finalizar el programa por pantalla el total las 
+sumas y el número de repeticiones. Con While
+54. Modifica el programa anterior y haz que se repita el ciclo automáticamente hasta que el total de todas las sumas sea superior a 50, será entonces cuando el programa finalice. No hará falta preguntar si deseas repetir la operación. En cada operación aparece por pantalla la suma de la operación y su acumulado. Para aquellos de vosotros que os fijáis en los detalles, controlar que el mensaje del acumulado es singular o plural.. . Con While
+55. Última vez que reutilizamos el mismo código.. lo prometo . A partir del programa anterior haz que sea todo exactamente igual pero teniendo en cuenta que el programa se repita siempre y cuando la suma acumulada sea superior a 50 o la suma acumulada sea par. Con While
+56. Realiza un programa que gestione un establecimiento de venta de bocadillos. Un pedido se compone de: bocadillo, acompañamiento y bebida. Un cliente puede pedir más de un pedido. El dependiente a partir del menú (ver imagen), se encarga de introducir los datos. El menú solo se visualiza una vez al ejecutar el programa. El programa debe preguntar al dependiente tras la realización de un pedido, si quiere gestionar otro. 
+El establecimiento contempla los siguientes descuentos:
+Si el total a pagar es entre 20 y 30 euros, se aplica un descuento del 5%
+Si el total a pagar es superior a 30 euros, se aplica un descuento del 15%
+Una vez se finaliza la introducción de todos los pedidos de un cliente, debe aparecer por pantalla:
+• El número de pedidos realizados
+• Total a pagar.
+• Total con IVA (10%)
+• Total con el descuento aplicado.
+MENÚ
+1. Bocadillo de calamares- 9 €"
+2. Bocadillo de chistorra - 4.5 €
+3. Bikini de jamón - 2.5 €"
+ACOMPAÑAMIENTO
+1. Patatas finas - 1.5 €
+PROGRAMACIÓN CON PYTHON
+Departamento de Tecnología
+2. Patatas gruesas - 1.75 €
+3. Patatas rústicas - 2 €
+BEBIDAS
+1. Coca cola - 2 €"
+2. Acuarius - 1.5 €
+3. Agua - 1 €"
+56b.Opcional. Haz alguna o todas las mejoras en el programa anterior que a continuación se indican:
+- Cuando se pregunta “si desea realizar otro pedido”, el encargado puede introducir s ó n en mayúscula o minúscula.
+- Si el encargado introduce otro valor distinto a S o N, el programa debe repetir la pregunta e informar de que ha introducido un valor equivocado.
+- El lugar de almacenar los precios en variables, utiliza una biblioteca (busca información) e investiga como moverte por los índices.
+- Un pedido puede estar formado por 3, 2 o 1 componentes. Ej. Un usuario puede pedir únicamente una bebida.
+57. Realiza un programa que permita adivinar un número comprendido entre 1 y 5. El programa debe controlar si el usuario introduce un número no comprendido entre 1 y 5
+58. Modifica el programa anterior para que tengas 3 intentos. Utiliza while
+59. Diseña un programa que “piense” un numero aleatorio entre 0 y 1000 para que nos pida que intentemos adivinarlo. En cada intento, el programa nos dirá si el numero introducido es mayor o menor del correcto. No utilices break para salir del bucle. Cuando se acierte el número debe mostrarse por pantalla un mensaje y el número de intentos.
+60. Diseña un programa que al introducir un número, realice su tabla de multiplicar del 1 al 10. Utiliza únicamente el while
+61. A partir del código anterior, haz que el programa finalice si el valor de la tabla de multiplicar essuperior o igual a 40.
+62. Realiza un programa que pida dos números por teclado y presente por pantalla qué números hay pares e impares en ese rango. Utiliza for. Contempla si primer valor es superior al segundo.
+63. Realiza un programa que permita tirar 100 veces un dado y nos presente por pantalla el número de veces que se repite cada número.
+64. Programa que pida continuamente números por teclado hasta que el usuario introduzca el valor -99. Será entonces cuando por pantalla aparecerán las siguientes estadísticas:
+a) total de pares
+b) total de impares
+c) total de números positivos
+d) total de números negativos
+e) total de ceros
+f) total de la suma de todos los números introducidos
+65. Programa que pida continuamente números por teclado hasta que el usuario introduzca el valor -99. Por pantalla debe aparecer cuál de todos los números introducidos es el mayo y cuál el menor.
+66. Repite el ejercicio 63. En lugar de ‘tirar’ 100 veces un dado, modifica el programa para ver cómo se comporta el dado en lanzamientos producidos durante aprox 3 segundos. 
