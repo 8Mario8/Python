@@ -20,7 +20,7 @@ rep = 0
 while rep < 3:
     rep += 1
     print("--- INTENTO", rep, "---")
-    password = input("Introduce una contraseña: \n") # Pedir al usuario que introduzca la contraseña y dar valor a la variable
+    password = input("Introduce una contraseña: ") # Pedir al usuario que introduzca la contraseña y dar valor a la variable
 
 ## Reiniciar contadores y variables para cada intento
     count_numeros_1_5 = 0
@@ -44,7 +44,6 @@ while rep < 3:
             if numero >= 1 and numero <= 5:
                 count_numeros_1_5 += 1
                 numeros_1_5 += j
-
             else:
                 count_numeros_6_9 += 1
                 numeros_6_9 += j
@@ -52,7 +51,7 @@ while rep < 3:
         elif j.isupper():
             count_mayusculas += 1
             mayusculas += j
-
+            
         elif j.islower():
             count_minusculas += 1
             minusculas += j
@@ -63,24 +62,39 @@ while rep < 3:
 
 ## Validar la contraseña según los criterios establecidos
     if count_numeros_1_5 < 1:
-        print(" - La contraseña debe contener al menos un número entre 1 y 5.")
+        print("\n - La contraseña debe contener al menos un número entre 1 y 5.")
         password_correcto = False
 
     if count_numeros_6_9 < 1:
-        print(" - La contraseña debe contener al menos un número entre 6 y 9.")
+        print("\n - La contraseña debe contener al menos un número entre 6 y 9.")
         password_correcto = False
 
     if count_mayusculas < 2:
-        print(" - La contraseña debe contener al menos 2 letras mayúsculas.")
+        print("\n - La contraseña debe contener al menos 2 letras mayúsculas.")
         password_correcto = False
+    elif len(set(mayusculas)) < 2:
+        print("\n - Las letras mayúsculas deben ser distintas.")
+        password_correcto = False
+    else:
+        pass
 
     if count_minusculas < 2:
-        print(" - La contraseña debe contener al menos 2 letras minúsculas.")
+        print("\n - La contraseña debe contener al menos 2 letras minúsculas.")
         password_correcto = False
+    elif len(set(minusculas)) < 2:
+        print("\n - Las letras minúsculas deben ser distintas.")
+        password_correcto = False
+    else:
+        pass
 
     if count_simbolos < 2:
-        print(" - La contraseña debe contener al menos 2 símbolos.")
+        print("\n - La contraseña debe contener al menos 2 símbolos.")
         password_correcto = False
+    elif len(set(simbolos)) < 2:
+        print("\n - Los símbolos deben ser distintos.")
+        password_correcto = False
+    else:
+        pass
 
 ## Mostrar el resultado final
     if password_correcto == True:
