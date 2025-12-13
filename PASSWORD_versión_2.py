@@ -11,17 +11,16 @@ print("    - Tienen que ser letras distintas")
 print(" - Ha de tener como mínimo 2 letras minúsculas")
 print("    - Tienen que ser letras distintas")
 print(" - Ha de tener como mínimo 2 símbolos")
-print("    - Tienen que ser smbolos diferentes")
+print("    - Tienen que ser smbolos diferentes\n")
 
 ## Inicializar variables
 rep = 0
-simbolos_validos = "ºª\|!@·#$~%&¬/()=?¿'¡^[]*+¨{},;.:-_<>"""
 
 ## Iniciar el bucle para los 3 intentos
 while rep < 3:
     rep += 1
-    print("\n--- INTENTO", rep, "---")
-    password = input("Introduce una contraseña: ") # Pedir al usuario que introduzca la contraseña y dar valor a la variable
+    print("--- INTENTO", rep, "---")
+    password = input("Introduce una contraseña: \n") # Pedir al usuario que introduzca la contraseña y dar valor a la variable
 
 ## Reiniciar contadores y variables para cada intento
     count_numeros_1_5 = 0
@@ -42,11 +41,11 @@ while rep < 3:
         if j.isdigit():
             numero = int(j)
 
-            if 1 <= numero <= 5:
+            if numero >= 1 and numero <= 5:
                 count_numeros_1_5 += 1
                 numeros_1_5 += j
 
-            elif 6 <= numero <= 9:
+            else:
                 count_numeros_6_9 += 1
                 numeros_6_9 += j
 
@@ -58,34 +57,34 @@ while rep < 3:
             count_minusculas += 1
             minusculas += j
 
-        elif j in simbolos_validos:
+        else:
             count_simbolos += 1
             simbolos += j
 
 ## Validar la contraseña según los criterios establecidos
     if count_numeros_1_5 < 1:
-        print("\n - La contraseña debe contener al menos un número entre 1 y 5.")
+        print(" - La contraseña debe contener al menos un número entre 1 y 5.")
         password_correcto = False
 
     if count_numeros_6_9 < 1:
-        print("\n - La contraseña debe contener al menos un número entre 6 y 9.")
+        print(" - La contraseña debe contener al menos un número entre 6 y 9.")
         password_correcto = False
 
     if count_mayusculas < 2:
-        print("\n - La contraseña debe contener al menos 2 letras mayúsculas.")
+        print(" - La contraseña debe contener al menos 2 letras mayúsculas.")
         password_correcto = False
 
     if count_minusculas < 2:
-        print("\n - La contraseña debe contener al menos 2 letras minúsculas.")
+        print(" - La contraseña debe contener al menos 2 letras minúsculas.")
         password_correcto = False
 
     if count_simbolos < 2:
-        print("\n - La contraseña debe contener al menos 2 símbolos.")
+        print(" - La contraseña debe contener al menos 2 símbolos.")
         password_correcto = False
 
 ## Mostrar el resultado final
     if password_correcto == True:
-        print("\nLA CONTRASEÑA ES CORRECTA.")
+        print("\nLA CONTRASEÑA ES CORRECTA.\n")
 
     else:
-        print("\nLA CONTRASEÑA ES INCORRECTA.")
+        print("\nLA CONTRASEÑA ES INCORRECTA.\n")
