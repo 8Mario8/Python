@@ -13,7 +13,7 @@ print("    - Tienen que ser letras distintas")
 print(" - Ha de tener como mínimo 2 símbolos")
 print("    - Tienen que ser smbolos diferentes\n")
 
-## Inicializar variables
+## Inicializar variable
 rep = 0
 
 ## Iniciar el bucle para los 3 intentos
@@ -51,7 +51,7 @@ while rep < 3:
         elif j.isupper():
             count_mayusculas += 1
             mayusculas += j
-            
+
         elif j.islower():
             count_minusculas += 1
             minusculas += j
