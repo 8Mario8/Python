@@ -1,4 +1,5 @@
 #58. Modifica el programa anterior para que tengas 3 intentos. Utiliza while
+
 import random
 
 numero_aleatorio = random.randint(1, 5)
@@ -14,6 +15,7 @@ while numero_usuario != numero_aleatorio and intentos < 3:
         print("¡Felicidades! Has adivinado el número.")
     else:
         intentos += 1
+        
         if intentos < 3:
             print("Número incorrecto. Inténtalo de nuevo.")
         elif intentos == 3:

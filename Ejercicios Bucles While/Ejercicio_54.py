@@ -9,6 +9,7 @@ while total_sumas <= 50:
     print("El resultado de la suma es: ", total)
     repeticiones += 1
     total_sumas += total
+    
     if total_sumas <= 50:
         print("El total acumulado hasta ahora es de: ", total_sumas)
 

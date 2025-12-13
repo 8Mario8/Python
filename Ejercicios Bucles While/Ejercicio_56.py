@@ -84,18 +84,22 @@ while repetir == 's':
     count_pedido += 1
     
     repetir = input("¿Deseas gestionar otro pedido? (s/n): ")
+
     if repetir.lower() == 'n':
         break
 
 iva = total_sin_iva * 0.10
 total_con_iva = total_sin_iva + iva
+
 if total_con_iva > 30:
     descuento = total_con_iva * 0.15
 elif total_con_iva >= 20 and total_con_iva <= 30:
     descuento = total_con_iva * 0.05
 else:
     descuento = 0
+
 total_con_descuento = total_con_iva - descuento
+
 print("Número de pedidos realizados: ", count_pedido)
 print("Total a pagar sin IVA:", total_sin_iva,"€")
 print("Total con IVA (10%):", total_con_iva,"€")

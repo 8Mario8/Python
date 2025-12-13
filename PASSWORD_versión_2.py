@@ -15,7 +15,7 @@ print("    - Tienen que ser smbolos diferentes")
 
 ## Inicializar variables
 rep = 0
-simbolos_validos = "!@#$%^&*()-_=+[]{};:,.<>?/|\`~"
+simbolos_validos = "ºª\|!@·#$~%&¬/()=?¿'¡^[]*+¨{},;.:-_<>"""
 
 ## Iniciar el bucle para los 3 intentos
 while rep < 3:
@@ -83,12 +83,8 @@ while rep < 3:
         print("\n - La contraseña debe contener al menos 2 símbolos.")
         password_correcto = False
 
-    if len(set(simbolos)) < 2:
-        print("\n - Los símbolos deben ser distintos.")
-        password_correcto = False
-
 ## Mostrar el resultado final
-    if password_correcto:
+    if password_correcto == True:
         print("\nLA CONTRASEÑA ES CORRECTA.")
 
     else:
