@@ -102,3 +102,16 @@ while rep < 3:
 
     else:
         print("\nLA CONTRASEÑA ES INCORRECTA.\n")
+
+## TESTEO DE CONTRASEÑAS:
+
+## 1. gustavoAdolfo61&%@ - incorrecta (faltan mayúsculas)
+## 2. gUSstavoAdolfo61&% - correcta
+## 3. petermaTÍas149862#@~$ - correcta
+## 4. castamanCA628# - incorrecta (faltan símbolos)
+## 5. MarioRuópolo123456789#@#@ - correcta
+## 6. mamalebisho1298#@ - incorrecta (faltan mayúsculas)
+## 7. 28AAss@# - incorrecta (las letras mayúsculas y minúsculasdeben ser distintas)
+## 8. 23ASas@# - incorrecta (debe contener al menos un número entre 6 y 9)
+## 9. 67QWqw#@ - incorrecta (debe contener al menos un número entre 1 y 5)
+##10. 1234567890qwertyQWERTY### - incorrecta (los símbolos deben ser distintos)
