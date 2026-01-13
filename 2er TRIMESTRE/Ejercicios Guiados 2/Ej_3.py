@@ -1,6 +1,6 @@
-milista = [1, 1, 2, 3, 2, 1, ]
+milista = [1, 1, 2, 3, 2, 1, 6, 7, 1]
 milistasinduplicados = []
 
-milistasinduplicados = set(milista)
+milistasinduplicados = list(set(milista))
 
 print(milistasinduplicados)
