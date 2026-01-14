@@ -3,5 +3,5 @@ milistacopiada = []
 
 milistacopiada = milista.copy()
 
-print(milista)
-print(milistacopiada)
+print("Mi lista: ", milista)
+print("Mi lista copiada: ", milistacopiada)
