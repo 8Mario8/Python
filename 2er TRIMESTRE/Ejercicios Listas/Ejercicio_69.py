@@ -7,7 +7,9 @@ cantidad_numeros = int(input("Introduce la cantidad de números que quieres intr
 
 while cantidad_numeros_introducidos < cantidad_numeros:
     num = int(input("Introduce un número entero para añadir a la lista: "))
+
     numeros.append(int(num))
+    
     cantidad_numeros_introducidos = cantidad_numeros_introducidos + 1
 
 numeros.sort()
