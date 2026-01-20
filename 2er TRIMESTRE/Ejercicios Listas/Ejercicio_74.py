@@ -18,6 +18,9 @@ for x in lista_total:
     
     if x in lista_2 and x not in lista_1:
         no_repetidas.append(x)
+    
+    if x in lista_1 and x not in lista_2:
+        no_repetidas.append(x)
 
 repetidas = list(set(repetidas))
 repetidas.sort()
