@@ -6,6 +6,7 @@ dnis_incorrectos = []
 continuar = "s"
 opcion = 4
 rep = 0
+continuar_menu = "s"
 
 while continuar == "s":
     dni_input = input("\nIntroduce tu número de DNI (8 dígitos): ")
@@ -41,16 +42,31 @@ while continuar == "s":
 
 # MENÚ
 while opcion == 1 or opcion == 2 or opcion == 3 or opcion == 4 or opcion == 5:
-    print("\nMENÚ")
-    print(" 1. DNIs correctos ordenados")
-    print(" 2. DNIs incorrectos ordenados")
-    print(" 3. Número total de errores")
-    print(" 4. Número total de DNIs correctos")
-    print(" 5. Porcentajes")
-    print(" 6. Salir")
+    if continuar_menu == "s" and rep == 0:
+        print("\nMENÚ")
+        print(" 1. DNIs correctos ordenados")
+        print(" 2. DNIs incorrectos ordenados")
+        print(" 3. Número total de errores")
+        print(" 4. Número total de DNIs correctos")
+        print(" 5. Porcentajes")
+        print(" 6. Salir")
 
     if rep == 0:
         opcion = int(input("\nIntroduce la opción que quieres visualizar: "))
+    
+    if continuar_menu == "s" and rep > 0:
+        continuar_menu = input("\n¿Deseas introducir otra opción? (s/n) ")
+
+        if continuar_menu == "s":
+            print("\nMENÚ")
+            print(" 1. DNIs correctos ordenados")
+            print(" 2. DNIs incorrectos ordenados")
+            print(" 3. Número total de errores")
+            print(" 4. Número total de DNIs correctos")
+            print(" 5. Porcentajes")
+            print(" 6. Salir")
+
+            opcion = int(input("\nIntroduce otra opción del menú: "))
 
     if opcion == 1:
         print("\nDNIs correctos ordenados:")
