@@ -9,5 +9,3 @@ if temperatura < 0:
     print("l'aigua es gelaria")
 elif temperatura > 100:
     print("l'aigua bulliria")
-else:
-    print("")
