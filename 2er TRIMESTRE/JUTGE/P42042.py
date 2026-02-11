@@ -1,10 +1,10 @@
 letra = input()
-vocales = "aeiou"
+vocales = "aeiouAEIOU"
 if letra.islower():
     print("minuscula")
 else:
     print("majuscula")
-if letra.lower in vocales:
+if letra in vocales:
     print("vocal")
 else:
     print("consonant")
