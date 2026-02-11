@@ -4,7 +4,7 @@ if letra.islower():
     print("minuscula")
 else:
     print("majuscula")
-if letra in vocales:
+if letra.lower in vocales:
     print("vocal")
 else:
     print("consonant")
