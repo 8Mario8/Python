@@ -1,0 +1,5 @@
+segons = input()
+h = int(segons / 3600)
+m = int((segons - (3600 * h) / 60))
+s = int(segons - ((h * 3600) + (m * 60)))
+print(h, m, s)
