@@ -127,7 +127,7 @@ if c > 0:
     if c2 >= 1:
         c = c - (2 * c2)
         if (c / 1) >= 1:
-            c21 = int(c / 1)
+            c1 = int(c / 1)
     else:
         if (c / 1) >= 1:
             c1 = int(c / 1)
