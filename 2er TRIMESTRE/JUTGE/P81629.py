@@ -13,7 +13,10 @@ c10 = 0
 c5 = 0
 c2 = 0
 c1 = 0
-e,c = input()
+e, c = input().split()
+
+e = int(e)
+c = int(c)
 
 if e > 0:
 
