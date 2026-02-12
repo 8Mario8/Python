@@ -9,6 +9,7 @@ hms = []
 hora_del_dia = input().split()
 
 h1 = int(hora_del_dia[0])
+m1 = int(hora_del_dia[1])
 
 if int(hora_del_dia[2]) == 59:
     m1 = m1 + 1
@@ -23,7 +24,7 @@ elif int(hora_del_dia[1]) == 60:
     h1 = h1 + 1
     m1 = 0
 else:
-    m1 = int(hora_del_dia[1])
+    m1 = m1
 
 if len(str(h1)) == 1:
     h.append(h1)
