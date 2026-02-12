@@ -21,26 +21,31 @@ else:
 
 if len(str(h1)) == 1:
     h.append(h1)
+    h = list(map(str, h))
+    h = "".join(h)
 else:
     h = h1
+    h = str(h)
 
 if len(str(m1)) == 1:
     m.append(m1)
+    m = list(map(str, m))
+    m = "".join(m)
 else:
     m = m1
+    m = str(m)
 
 if len(str(s1)) == 1:
     s.append(s1)
+    s = list(map(str, s))
+    s = "".join(s)
 else:
     s = s1
-
-h = str(h)
-m = str(m)
-s = str(s)
+    s = str(s)
 
 hms.append(h)
 hms.append(m)
 hms.append(s)
-output = ':'.join(hms)
+output = ":".join(hms)
 
 print(output)
