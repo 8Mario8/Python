@@ -17,14 +17,12 @@ if int(hora_del_dia[2]) == 59:
 else:
     s1 = int(hora_del_dia[2]) + 1
 
-if int(hora_del_dia[1]) == 59:
+if m1 == 60:
     h1 = h1 + 1
     m1 = 0
-elif int(hora_del_dia[1]) == 60:
-    h1 = h1 + 1
-    m1 = 0
-else:
-    m1 = m1
+
+if h1 == 24:
+    h1 = 0
 
 if len(str(h1)) == 1:
     h.append(h1)
