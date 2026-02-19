@@ -34,8 +34,8 @@ if empezar.lower() == "s":
             print(lista_ahorcado.append(letra_ahorcado))
 
     if "_" not in lista_partida:
-        print("\nPalabra secreta: ", palabra_secreta)
-        print("¡Felicidades, has adivinado la palabra!")
+        print("\nPalabra secreta: ", " ".join(lista_partida))
+        print("\n¡Felicidades, has adivinado la palabra!")
         
     else:
         print("\nHas perdido. La palabra secreta era: ", palabra_secreta)
@@ -45,7 +45,7 @@ else:
 
 while nueva_partida.lower() == "s":
 
-    nueva_partida = input("¿Quieres jugar otra vez? (s/n): ")
+    nueva_partida = input("\n¿Quieres jugar otra vez? (s/n): ")
 
     while nueva_partida.lower() not in ["s", "n"]:
         nueva_partida = input("Opción no válida. ¿Quieres jugar otra vez? (s/n): ")
@@ -73,8 +73,8 @@ while nueva_partida.lower() == "s":
                 print(lista_ahorcado.append(letra_ahorcado))
 
         if "_" not in lista_partida:
-            print("\nPalabra secreta: ", palabra_secreta)
-            print("¡Felicidades, has adivinado la palabra!")
+            print("\nPalabra secreta: ", " ".join(lista_partida))
+            print("\n¡Felicidades, has adivinado la palabra!")
         
         else:
             print("\nHas perdido. La palabra secreta era: ", palabra_secreta)
