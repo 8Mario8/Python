@@ -8,6 +8,10 @@ lista_partida = []
 lista_ahorcado = []
 nueva_partida = "s"
 letra_ahorcado = ""
+partidas = 0
+lista_aciertos = []
+lista_errores =[]
+lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
 
 while len(palabra_secreta) > len(lista_partida):
     lista_partida.append("_")
@@ -20,8 +24,8 @@ while empezar.lower() not in ["s", "n"]:
     empezar = input("Opción no válida. ¿Quieres empezar a jugar? (s/n): ")
 
 if empezar.lower() == "s":
-    while len(lista_ahorcado) < 6 and "_" in lista_partida:
-        print("\nPalabra secreta: ", " ".join(lista_partida))
+    while len(lista_ahorcado) < 8 and "_" in lista_partida:
+        print("\nPalabra secreta: ", ",".join(lista_partida))
         letra = input("Introduce una letra: ").lower()
 
         if letra in palabra_secreta.lower():
