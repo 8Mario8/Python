@@ -2,13 +2,15 @@
 
 import random
 
-lista_palabrasecreta = ["Jirafa", "Lixivia", "Yunque", "Niquel", "Bucelario", "Cicuta", "Yuxtaposición", "Fulgido", "Guillotina", "Arado"]
+lista_palabrasecreta = ["Quijotesco", "Anticonstitucional", "Cacofonía", "Lixivia", "Yunque", "Níquel", "Bucelario", "Cicuta", "Yuxtaposición", "Fulgido", "Guillotina", "Arado"]
 palabra_secreta = random.choice(lista_palabrasecreta)
 lista_partida = []
 lista_ahorcado = []
 nueva_partida = "s"
 letra_ahorcado = ""
 partidas = 0
+errores = 0
+aciertos = 0
 lista_aciertos = []
 lista_errores =[]
 lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
@@ -16,7 +18,7 @@ lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
 while len(palabra_secreta) > len(lista_partida):
     lista_partida.append("_")
 
-print("---- JUEGO DEL AHORCADO ----")
+print("JUEGO DEL AHORCADO")
 
 empezar = input("¿Quieres empezar a jugar? (s/n): ")
 
@@ -25,62 +27,92 @@ while empezar.lower() not in ["s", "n"]:
 
 if empezar.lower() == "s":
     while len(lista_ahorcado) < 8 and "_" in lista_partida:
-        print("\nPalabra secreta: ", ",".join(lista_partida))
+        print("\nPalabra secreta: ", " ".join(lista_partida))
         letra = input("Introduce una letra: ").lower()
 
         if letra in palabra_secreta.lower():
             for i in range(len(palabra_secreta)):
                 if palabra_secreta[i].lower() == letra:
                     lista_partida[i] = palabra_secreta[i]
+                    aciertos += 1
+                    lista_aciertos.append(letra)
 
         else:
+            errores += 1
+            if errores == 1:
+                letra_ahorcado = "A"
+            elif errores == 2:
+                letra_ahorcado = "H"
+            elif errores == 3:
+                letra_ahorcado = "O"
+            elif errores == 4:
+                letra_ahorcado = "R"
+            elif errores == 5:
+                letra_ahorcado = "C"
+            elif errores == 6:
+                letra_ahorcado = "A"
+            elif errores == 7:
+                letra_ahorcado = "D"
+            elif errores == 8:
+                letra_ahorcado = "O"
+
             print("Letra incorrecta.")
-            print(lista_ahorcado.append(letra_ahorcado))
+            lista_ahorcado.append(letra_ahorcado)
+            print(" ".join(lista_ahorcado))
+
+            lista_errores.append(letra)
 
     if "_" not in lista_partida:
         print("\nPalabra secreta: ", " ".join(lista_partida))
+        print("\nNúmero de aciertos: ", aciertos)
+        print("Número de errores: ", errores)
         print("\n¡Felicidades, has adivinado la palabra!")
+
         
     else:
-        print("\nHas perdido. La palabra secreta era: ", palabra_secreta)
+        print("\nLa palabra secreta era: ", palabra_secreta)
+        print("\nNúmero de aciertos: ", aciertos)
+        print("Número de errores: ", errores)
+        print("\nHas perdido")
+
 
 else:
-    print("---- FIN DEL JUEGO ----")
+    print("FIN DEL JUEGO")
 
-while nueva_partida.lower() == "s":
-
-    nueva_partida = input("\n¿Quieres jugar otra vez? (s/n): ")
-
-    while nueva_partida.lower() not in ["s", "n"]:
-        nueva_partida = input("Opción no válida. ¿Quieres jugar otra vez? (s/n): ")
-
-    if nueva_partida.lower() == "s":
-        palabra_secreta = random.choice(lista_palabrasecreta)
-        lista_partida = []
-        lista_ahorcado = []
-
-        while len(palabra_secreta) > len(lista_partida):
-            lista_partida.append("_")
-        
-        while len(lista_ahorcado) < 6 and "_" in lista_partida:
-            print("\nPalabra secreta: ", " ".join(lista_partida))
-            letra = input("Introduce una letra: ").lower()
-
-            if letra in palabra_secreta.lower():
-                for i in range(len(palabra_secreta)):
-                    if palabra_secreta[i].lower() == letra:
-                        lista_partida[i] = palabra_secreta[i]
-
-            else:
-                lista_ahorcado.append(letra)
-                print("Letra incorrecta")
-                print(lista_ahorcado.append(letra_ahorcado))
-
-        if "_" not in lista_partida:
-            print("\nPalabra secreta: ", " ".join(lista_partida))
-            print("\n¡Felicidades, has adivinado la palabra!")
-        
-        else:
-            print("\nHas perdido. La palabra secreta era: ", palabra_secreta)
-    else:
-        print("---- FIN DEL JUEGO ----")
+#while nueva_partida.lower() == "s":
+#
+#    nueva_partida = input("\n¿Quieres jugar otra vez? (s/n): ")
+#
+#    while nueva_partida.lower() not in ["s", "n"]:
+#        nueva_partida = input("Opción no válida. ¿Quieres jugar otra vez? (s/n): ")
+#
+#    if nueva_partida.lower() == "s":
+#        palabra_secreta = random.choice(lista_palabrasecreta)
+#        lista_partida = []
+#        lista_ahorcado = []
+#
+#        while len(palabra_secreta) > len(lista_partida):
+#            lista_partida.append("_")
+#        
+#        while len(lista_ahorcado) < 6 and "_" in lista_partida:
+#            print("\nPalabra secreta: ", " ".join(lista_partida))
+#            letra = input("Introduce una letra: ").lower()
+#
+#            if letra in palabra_secreta.lower():
+#                for i in range(len(palabra_secreta)):
+#                    if palabra_secreta[i].lower() == letra:
+#                        lista_partida[i] = palabra_secreta[i]
+#
+#            else:
+#                lista_ahorcado.append(letra)
+#                print("Letra incorrecta")
+#                print(lista_ahorcado.append(letra_ahorcado))
+#
+#        if "_" not in lista_partida:
+#            print("\nPalabra secreta: ", " ".join(lista_partida))
+#            print("\n¡Felicidades, has adivinado la palabra!")
+#        
+#        else:
+#            print("\nHas perdido. La palabra secreta era: ", palabra_secreta)
+#    else:
+#        print("---- FIN DEL JUEGO ----")
