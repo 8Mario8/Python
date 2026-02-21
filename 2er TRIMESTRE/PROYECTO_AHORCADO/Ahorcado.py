@@ -1,9 +1,11 @@
 # JUEGO DEL AHORCADO
 
 import random
+import unicodedata
 
 lista_palabrasecreta = ["Quijotesco", "Anticonstitucional", "Cacofonía", "Lixivia", "Yunque", "Níquel", "Bucelario", "Cicuta", "Yuxtaposición", "Fulgido", "Guillotina", "Arado"]
 palabra_secreta = random.choice(lista_palabrasecreta)
+palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
 lista_partida = []
 lista_ahorcado = []
 nueva_partida = "s"
@@ -28,18 +30,20 @@ while empezar.lower() not in ["s", "n"]:
     empezar = input("Opción no válida. ¿Quieres empezar a jugar? (s/n): ")
 
 if empezar.lower() == "s":
+    partidas += 1
     while len(lista_ahorcado) < 8 and "_" in lista_partida:
         print("\nPalabra secreta: ", " ".join(lista_partida))
         letra = input("Introduce una letra: ").lower()
 
-        if letra in palabra_secreta.lower():
+        if letra in palabra_secreta_sin_acentos.lower():
 
-            for i in range(len(palabra_secreta)):
+            for i in range(len(palabra_secreta_sin_acentos)):
 
-                if palabra_secreta[i].lower() == letra:
+                if palabra_secreta_sin_acentos[i].lower() == letra:
                     lista_partida[i] = palabra_secreta[i]
                     aciertos += 1
-                    lista_aciertos.append(letra)
+            
+            lista_aciertos.append(letra)
 
         else:
             errores += 1
@@ -73,7 +77,7 @@ if empezar.lower() == "s":
         print("\n¡Felicidades, has adivinado la palabra!")
         
     else:
-        print("\nLa palabra secreta era: ", palabra_secreta)
+        print("\nLa palabra secreta era: ", " ".join(lista_partida))
         print("\nNúmero de aciertos: ", aciertos)
         print("Número de errores: ", errores)
         print("\nHas perdido")
@@ -87,8 +91,11 @@ if empezar.lower() == "s":
 
         if nueva_partida.lower() == "s":
             partidas += 1
+            errores = 0
+            aciertos = 0
             lista_palabrasecreta_no_utilizadas.remove(palabra_secreta)
             palabra_secreta = random.choice(lista_palabrasecreta_no_utilizadas)
+            palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
             lista_partida = []
             lista_ahorcado = []
 
@@ -99,14 +106,15 @@ if empezar.lower() == "s":
                     print("\nPalabra secreta: ", " ".join(lista_partida))
                     letra = input("Introduce una letra: ").lower()
 
-                    if letra in palabra_secreta.lower():
+                    if letra in palabra_secreta_sin_acentos.lower():
                     
-                        for i in range(len(palabra_secreta)):
+                        for i in range(len(palabra_secreta_sin_acentos)):
                         
-                            if palabra_secreta[i].lower() == letra:
+                            if palabra_secreta_sin_acentos[i].lower() == letra:
                                 lista_partida[i] = palabra_secreta[i]
                                 aciertos += 1
-                                lista_aciertos.append(letra)
+                                
+                        lista_aciertos.append(letra)
 
                     else:
                         errores += 1
@@ -142,7 +150,7 @@ if empezar.lower() == "s":
                 partidas_ganadas += 1
 
             else:
-                print("\nLa palabra secreta era: ", palabra_secreta)
+                print("\nLa palabra secreta era: ", " ".join(lista_partida))
                 print("\nNúmero de aciertos: ", aciertos)
                 print("Número de errores: ", errores)
                 print("\nHas perdido")
