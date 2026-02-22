@@ -28,7 +28,6 @@ while empezar.lower() not in ["s", "n"]:
     empezar = input("Opción no válida. ¿Quieres empezar a jugar? (s/n): ")
 
 if empezar.lower() == "s":
-
     inicio_juego = datetime.now()
     fecha_inicio_juego = inicio_juego.strftime("%d-%m-%Y")
     hora_inicio_juego = inicio_juego.strftime("%H:%M:%S")
@@ -36,7 +35,6 @@ if empezar.lower() == "s":
     while nueva_partida.lower() == "s" and len(lista_palabrasecreta_no_utilizadas) > 0:
 
         if partidas > 0:
-
             nueva_partida = input("\n¿Quieres jugar otra vez? (s/n): ")
 
             while nueva_partida.lower() not in ["s", "n"]:
@@ -62,10 +60,8 @@ if empezar.lower() == "s":
                 palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
                 lista_partida = []
                 lista_ahorcado = []
-                letra_ahorcado = ""
         
         if nueva_partida.lower() == "s" or partidas == 0:
-
             inicio = datetime.now()
             fecha_inicio = inicio.strftime("%d-%m-%Y")
             hora_inicio = inicio.strftime("%H:%M:%S")
@@ -74,45 +70,82 @@ if empezar.lower() == "s":
 
             while len(palabra_secreta) > len(lista_partida):
                 lista_partida.append("_")
+            
+            if " " in palabra_secreta:
+
+                for i in range(len(palabra_secreta)):
+
+                    if palabra_secreta[i] == " ":
+                        lista_partida[i] = " "
 
             while len(lista_ahorcado) < 8 and "_" in lista_partida:
                 print("\nPalabra secreta: ", " ".join(lista_partida))
-                letra = input("Introduce una letra: ").lower()
 
-                if letra in palabra_secreta_sin_acentos.lower():
+                adivinar_palabra = input("¿Quieres adivinar la palabra? (s/n): ")
 
-                    for i in range(len(palabra_secreta_sin_acentos)):
+                while adivinar_palabra.lower() not in ["s", "n"]:
+                    adivinar_palabra = input("Opción no válida. ¿Quieres adivinar la palabra? (s/n): ")
 
-                        if palabra_secreta_sin_acentos[i].lower() == letra:
-                            lista_partida[i] = palabra_secreta[i]
-                            aciertos += 1
+                if adivinar_palabra.lower() == "s":
+                    palabra_usuario = input("Introduce la palabra que crees que es: ")
 
-                    lista_aciertos.append(letra)
+                    if palabra_usuario.lower() == palabra_secreta.lower():
+                        lista_partida = list(palabra_secreta)
+                        aciertos += len(palabra_secreta) - lista_partida.count("_")
+                    else:
+                        errores += len(palabra_secreta) - lista_partida.count("_")
+
+                        print("Palabra incorrecta")
+                        lista_ahorcado.append("AHORCADO")
+                        print(" ".join(lista_ahorcado))
+
+                        lista_errores.append(letra)
 
                 else:
-                    errores += 1
-                    if errores == 1:
-                        letra_ahorcado = "A"
-                    elif errores == 2:
-                        letra_ahorcado = "H"
-                    elif errores == 3:
-                        letra_ahorcado = "O"
-                    elif errores == 4:
-                        letra_ahorcado = "R"
-                    elif errores == 5:
-                        letra_ahorcado = "C"
-                    elif errores == 6:
-                        letra_ahorcado = "A"
-                    elif errores == 7:
-                        letra_ahorcado = "D"
-                    elif errores == 8:
-                        letra_ahorcado = "O"
+                    letra = input("Introduce una letra: ").lower()
 
-                    print("Letra incorrecta.")
-                    lista_ahorcado.append(letra_ahorcado)
-                    print(" ".join(lista_ahorcado))
+                    if letra in palabra_secreta_sin_acentos.lower():
 
-                    lista_errores.append(letra)
+                        for i in range(len(palabra_secreta_sin_acentos)):
+
+                            if palabra_secreta_sin_acentos[i].lower() == letra:
+                                lista_partida[i] = palabra_secreta[i]
+                                aciertos += 1
+
+                                lista_aciertos.append(letra)
+
+                    else:
+                        errores += 1
+
+                        if errores == 1:
+                            letra_ahorcado = "A"
+
+                        elif errores == 2:
+                            letra_ahorcado = "H"
+
+                        elif errores == 3:
+                            letra_ahorcado = "O"
+
+                        elif errores == 4:
+                            letra_ahorcado = "R"
+
+                        elif errores == 5:
+                            letra_ahorcado = "C"
+
+                        elif errores == 6:
+                            letra_ahorcado = "A"
+
+                        elif errores == 7:
+                            letra_ahorcado = "D"
+
+                        elif errores == 8:
+                            letra_ahorcado = "O"
+
+                        print("Letra incorrecta")
+                        lista_ahorcado.append(letra_ahorcado)
+                        print(" ".join(lista_ahorcado))
+
+                        lista_errores.append(letra)
 
             if "_" not in lista_partida:
                 partidas_ganadas += 1
@@ -169,7 +202,7 @@ if empezar.lower() == "s":
                 print("Partida registrada correctamente en 'partidas_ahorcado.txt'.")
 
     if len(lista_palabrasecreta_no_utilizadas) == 0:
-        print("\nNo quedan más palabras disponibles para jugar. Gracias por jugar al Ahorcado.")
+        print("\nNo quedan más palabras disponibles para seguir. Gracias por jugar al Ahorcado.")
     
     fin_juego = datetime.now()
     fecha_fin_juego = fin_juego.strftime("%d-%m-%Y")
