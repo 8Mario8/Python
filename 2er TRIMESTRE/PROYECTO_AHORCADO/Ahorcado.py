@@ -3,8 +3,10 @@
 import random
 import unicodedata
 from datetime import datetime
+import string
 
-lista_palabrasecreta = ["Quijotesco", "Anticonstitucional", "Cacofonía", "Lixivia", "Yunque", "Níquel", "Bucelario", "Cicuta", "Yuxtaposición", "Fulgido", "Guillotina", "Arado"]
+fichero_txt = open("palabras_ahorcado.txt", "r", encoding = "utf-8")
+lista_palabrasecreta = fichero_txt.read().splitlines()
 palabra_secreta = random.choice(lista_palabrasecreta)
 palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
 lista_partida = []
@@ -19,6 +21,7 @@ aciertos = 0
 lista_aciertos = []
 lista_errores =[]
 lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
+abecedario = string.ascii_lowercase
 
 print("JUEGO DEL AHORCADO")
 
@@ -89,17 +92,25 @@ if empezar.lower() == "s":
                 if adivinar_palabra.lower() == "s":
                     palabra_usuario = input("Introduce la palabra que crees que es: ")
 
-                    if palabra_usuario.lower() == palabra_secreta.lower():
+                    if palabra_usuario.lower() == palabra_secreta.lower() or palabra_usuario.lower() == palabra_secreta_sin_acentos.lower():
+                        aciertos += lista_partida.count("_")
+                        lista_aciertos.append(palabra_usuario)
+
                         lista_partida = list(palabra_secreta)
-                        aciertos += len(palabra_secreta) - lista_partida.count("_")
+
                     else:
-                        errores += len(palabra_secreta) - lista_partida.count("_")
+                        errores += lista_partida.count("_")
 
                         print("Palabra incorrecta")
-                        lista_ahorcado.append("AHORCADO")
+
+                        letra_ahorcado = list("AHORCADO")
+
+                        if len(lista_ahorcado) < len(letra_ahorcado):
+                            lista_ahorcado.extend(letra_ahorcado[len(lista_ahorcado):])
+
                         print(" ".join(lista_ahorcado))
 
-                        lista_errores.append(letra)
+                        lista_errores.append(palabra_usuario)
 
                 else:
                     letra = input("Introduce una letra: ").lower()
@@ -203,6 +214,8 @@ if empezar.lower() == "s":
 
     if len(lista_palabrasecreta_no_utilizadas) == 0:
         print("\nNo quedan más palabras disponibles para seguir. Gracias por jugar al Ahorcado.")
+    
+    fichero_txt.close()
     
     fin_juego = datetime.now()
     fecha_fin_juego = fin_juego.strftime("%d-%m-%Y")

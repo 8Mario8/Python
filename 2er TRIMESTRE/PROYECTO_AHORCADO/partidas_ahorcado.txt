@@ -1,2 +1,0 @@
- -  | Inicio: 22-02-2026 16:49:39 | Fin: 22-02-2026 16:50:53 | Duración: 1 minutos y  13 segundos | Palabra secreta: espejo defectuoso | Número de aciertos: 17 | Número de errores: 0
- -  | Inicio: 22-02-2026 16:54:00 | Fin: 22-02-2026 16:54:17 | Duración: 0 minutos y  16 segundos | Palabra secreta: espejo defectuoso | Número de aciertos: 16 | Número de errores: 0
