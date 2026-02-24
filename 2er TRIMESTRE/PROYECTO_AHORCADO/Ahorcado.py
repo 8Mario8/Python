@@ -399,7 +399,8 @@ if empezar.lower() == "s":
                 aciertos = 0
                 lista_palabrasecreta_no_utilizadas.remove(palabra_secreta)
                 palabra_secreta = random.choice(lista_palabrasecreta_no_utilizadas)
-                palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
+                if categoria != "2":
+                    palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
                 lista_partida = []
                 lista_ahorcado = []
         
