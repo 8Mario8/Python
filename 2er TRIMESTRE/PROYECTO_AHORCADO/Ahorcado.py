@@ -5,22 +5,6 @@ import unicodedata
 from datetime import datetime
 import string
 
-fichero_txt = open("palabras_ahorcado.txt", "r", encoding = "utf-8")
-lista_palabrasecreta = fichero_txt.read().splitlines()
-palabra_secreta = random.choice(lista_palabrasecreta)
-palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
-lista_partida = []
-lista_ahorcado = []
-nueva_partida = "s"
-letra_ahorcado = ""
-partidas = 0
-partidas_ganadas = 0
-partidas_perdidas = 0
-errores = 0
-aciertos = 0
-lista_aciertos = []
-lista_errores =[]
-lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
 abecedario = string.ascii_lowercase
 
 print("JUEGO DEL AHORCADO")
@@ -31,6 +15,192 @@ while empezar.lower() not in ["s", "n"]:
     empezar = input("Opción no válida. ¿Quieres empezar a jugar? (s/n): ")
 
 if empezar.lower() == "s":
+    print("\n MODOS DE JUEGO: ")
+    print("   1. Modo fácil")
+    print("   2. Modo difícil")
+    print("   3. Modo contra reloj fácil (1 minuto por palabra)")
+    print("   4. Modo contra reloj difícil (30 segundos por palabra)")
+
+    modo_juego = input("\nSelecciona el modo de juego (1/2/3/4): ")
+
+    while modo_juego not in ["1", "2", "3", "4"]:
+        modo_juego = input("Opción no válida. Selecciona el modo de juego (1/2/3/4): ")
+
+    print("\n CATEGORÍAS: ")
+    print("   1. General")
+    print("   2. Palabras con acentos")
+    print("   3. Palabras compuestas")
+    print("   4. Medicina")
+    print("   5. Ciencia")
+    print("   6. Deportes")
+    print("   7. Madre Tierra")
+    print("   8. Informática")
+    print("   9. Literatura")
+    print("  10. anglicismos")
+    print("  11. Geografía")
+    print("  12. Historia")
+    print("  13. Derecho")
+    print("  14. Economía")
+    print("  15. Términos difíciles")
+
+    categoria = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+
+    while categoria not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]:
+        categoria = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+    
+    if categoria == "1":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_general_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_general_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_general_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_general_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "2":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_acentos_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_acentos_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_acentos_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_acentos_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "3":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_compuestas_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_compuestas_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_compuestas_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_compuestas_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "4":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_medicina_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_medicina_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_medicina_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_medicina_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "5":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_ciencia_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_ciencia_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_ciencia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_ciencia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "6":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_deportes_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_deportes_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_deportes_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_deportes_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "7":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_madre_tierra_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_madre_tierra_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_madre_tierra_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_madre_tierra_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "8":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_informatica_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_informatica_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_informatica_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_informatica_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "9":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_literatura_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_literatura_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_literatura_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_literatura_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "10":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_anglicismos_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_anglicismos_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_anglicismos_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_anglicismos_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "11":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_geografia_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_geografia_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_geografia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_geografia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "12":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_historia_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_historia_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_historia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_historia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "13":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_derecho_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_derecho_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_derecho_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_derecho_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "14":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_economia_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_economia_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_economia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_economia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+    elif categoria == "15":
+        if modo_juego == "1":
+            fichero_txt = open("palabras_ahorcado_dificiles_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "2":
+            fichero_txt = open("palabras_ahorcado_dificiles_dificil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "3":
+            fichero_txt = open("palabras_ahorcado_dificiles_contra_reloj_facil.txt", "r", encoding = "utf-8")
+        elif modo_juego == "4":
+            fichero_txt = open("palabras_ahorcado_dificiles_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+
+    lista_palabrasecreta = fichero_txt.read().splitlines()
+    palabra_secreta = random.choice(lista_palabrasecreta)
+    if categoria != "2":
+        palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
+    lista_partida = []
+    lista_ahorcado = []
+    nueva_partida = "s"
+    letra_ahorcado = ""
+    partidas = 0
+    partidas_ganadas = 0
+    partidas_perdidas = 0
+    errores = 0
+    aciertos = 0
+    lista_aciertos = []
+    lista_errores =[]
+    lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
+
     inicio_juego = datetime.now()
     fecha_inicio_juego = inicio_juego.strftime("%d-%m-%Y")
     hora_inicio_juego = inicio_juego.strftime("%H:%M:%S")
@@ -55,6 +225,175 @@ if empezar.lower() == "s":
                     lista_palabrasecreta_no_utilizadas.append(nueva_palabra)
                 else:
                     print("No se añadirá una nueva palabra al juego")
+                
+                print("\n MODOS DE JUEGO: ")
+                print("   1. Modo fácil")
+                print("   2. Modo difícil")
+                print("   3. Modo contra reloj fácil (1 minuto por palabra)")
+                print("   4. Modo contra reloj difícil (30 segundos por palabra)")
+
+                modo_juego = input("\nSelecciona el modo de juego (1/2/3/4): ")
+
+                while modo_juego not in ["1", "2", "3", "4"]:
+                    modo_juego = input("Opción no válida. Selecciona el modo de juego (1/2/3/4): ")
+
+                print("\n CATEGORÍAS: ")
+                print("   1. General")
+                print("   2. Palabras con acentos")
+                print("   3. Palabras compuestas")
+                print("   4. Medicina")
+                print("   5. Ciencia")
+                print("   6. Deportes")
+                print("   7. Madre Tierra")
+                print("   8. Informática")
+                print("   9. Literatura")
+                print("  10. anglicismos")
+                print("  11. Geografía")
+                print("  12. Historia")
+                print("  13. Derecho")
+                print("  14. Economía")
+                print("  15. Términos difíciles")
+
+                categoria = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+
+                while categoria not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]:
+                    categoria = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+
+                if categoria == "1":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_general_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_general_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_general_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_general_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "2":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_acentos_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_acentos_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_acentos_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_acentos_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "3":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_compuestas_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_compuestas_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_compuestas_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_compuestas_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "4":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_medicina_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_medicina_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_medicina_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_medicina_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "5":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_ciencia_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_ciencia_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_ciencia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_ciencia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "6":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_deportes_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_deportes_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_deportes_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_deportes_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "7":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_madre_tierra_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_madre_tierra_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_madre_tierra_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_madre_tierra_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "8":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_informatica_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_informatica_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_informatica_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_informatica_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "9":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_literatura_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_literatura_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_literatura_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_literatura_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "10":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_anglicismos_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_anglicismos_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_anglicismos_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_anglicismos_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "11":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_geografia_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_geografia_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_geografia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_geografia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "12":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_historia_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_historia_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_historia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_historia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "13":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_derecho_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_derecho_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_derecho_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_derecho_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "14":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_economia_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_economia_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_economia_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_economia_contra_reloj_dificil.txt", "r", encoding = "utf-8")
+                elif categoria == "15":
+                    if modo_juego == "1":
+                        fichero_txt = open("palabras_ahorcado_dificiles_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "2":
+                        fichero_txt = open("palabras_ahorcado_dificiles_dificil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "3":
+                        fichero_txt = open("palabras_ahorcado_dificiles_contra_reloj_facil.txt", "r", encoding = "utf-8")
+                    elif modo_juego == "4":
+                        fichero_txt = open("palabras_ahorcado_dificiles_contra_reloj_dificil.txt", "r", encoding = "utf-8")
                 
                 errores = 0
                 aciertos = 0
