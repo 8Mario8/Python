@@ -4,6 +4,7 @@ import random
 import unicodedata
 from datetime import datetime
 import string
+import time
 
 abecedario = string.ascii_lowercase
 
@@ -186,6 +187,17 @@ if empezar.lower() == "s":
 
             partidas += 1
 
+            if modo_juego in ["3", "4"]:
+
+                if modo_juego == "3":
+                    tiempo_limite = 60
+                else:
+                    tiempo_limite = 30
+
+                print("\nTienes ", tiempo_limite, " segundos para adivinar la palabra")
+
+                tiempo_inicio = time.time()
+
             while len(palabra_secreta) > len(lista_partida):
                 lista_partida.append("_")
             
@@ -230,49 +242,102 @@ if empezar.lower() == "s":
                 else:
                     letra = input("Introduce una letra: ").lower()
 
-                    if letra in palabra_secreta_sin_acentos.lower():
+                    if categoria != "2" and categoria_nuevapartida != "2":
 
-                        for i in range(len(palabra_secreta_sin_acentos)):
+                        if letra in palabra_secreta_sin_acentos.lower():
 
-                            if palabra_secreta_sin_acentos[i].lower() == letra:
-                                lista_partida[i] = palabra_secreta[i]
-                                aciertos += 1
+                            for i in range(len(palabra_secreta_sin_acentos)):
 
-                                lista_aciertos.append(letra)
+                                if palabra_secreta_sin_acentos[i].lower() == letra:
+                                    lista_partida[i] = palabra_secreta[i]
+                                    aciertos += 1
 
+                                    lista_aciertos.append(letra)
+
+                                else:
+                                    errores += 1
+            
+                                    if errores == 1:
+                                        letra_ahorcado = "A"
+            
+                                    elif errores == 2:
+                                        letra_ahorcado = "H"
+            
+                                    elif errores == 3:
+                                        letra_ahorcado = "O"
+            
+                                    elif errores == 4:
+                                        letra_ahorcado = "R"
+            
+                                    elif errores == 5:
+                                        letra_ahorcado = "C"
+            
+                                    elif errores == 6:
+                                        letra_ahorcado = "A"
+            
+                                    elif errores == 7:
+                                        letra_ahorcado = "D"
+            
+                                    elif errores == 8:
+                                        letra_ahorcado = "O"
+            
+                                    print("Letra incorrecta")
+                                    lista_ahorcado.append(letra_ahorcado)
+                                    print(" ".join(lista_ahorcado))
+            
+                                    lista_errores.append(letra)
+                    
                     else:
-                        errores += 1
 
-                        if errores == 1:
-                            letra_ahorcado = "A"
+                        if letra in palabra_secreta.lower():
 
-                        elif errores == 2:
-                            letra_ahorcado = "H"
+                            for i in range(len(palabra_secreta)):
 
-                        elif errores == 3:
-                            letra_ahorcado = "O"
+                                if palabra_secreta[i].lower() == letra:
+                                    lista_partida[i] = palabra_secreta[i]
+                                    aciertos += 1
 
-                        elif errores == 4:
-                            letra_ahorcado = "R"
+                                    lista_aciertos.append(letra)
 
-                        elif errores == 5:
-                            letra_ahorcado = "C"
+                                else:
+                                    errores += 1
 
-                        elif errores == 6:
-                            letra_ahorcado = "A"
+                                    if errores == 1:
+                                        letra_ahorcado = "A"
 
-                        elif errores == 7:
-                            letra_ahorcado = "D"
+                                    elif errores == 2:
+                                        letra_ahorcado = "H"
 
-                        elif errores == 8:
-                            letra_ahorcado = "O"
+                                    elif errores == 3:
+                                        letra_ahorcado = "O"
 
-                        print("Letra incorrecta")
-                        lista_ahorcado.append(letra_ahorcado)
-                        print(" ".join(lista_ahorcado))
+                                    elif errores == 4:
+                                        letra_ahorcado = "R"
 
-                        lista_errores.append(letra)
+                                    elif errores == 5:
+                                        letra_ahorcado = "C"
 
+                                    elif errores == 6:
+                                        letra_ahorcado = "A"
+
+                                    elif errores == 7:
+                                        letra_ahorcado = "D"
+
+                                    elif errores == 8:
+                                        letra_ahorcado = "O"
+
+                                    print("Letra incorrecta")
+                                    lista_ahorcado.append(letra_ahorcado)
+                                    print(" ".join(lista_ahorcado))
+
+                                    lista_errores.append(letra)
+                
+                tiempo_transcurrido = time.time() - tiempo_inicio
+
+                if tiempo_transcurrido >= tiempo_limite:
+                    print("\nSe ha acabado el tiempo")
+                    break
+                
             if "_" not in lista_partida:
                 partidas_ganadas += 1
 
@@ -292,13 +357,13 @@ if empezar.lower() == "s":
                 print("Número de errores: ", errores)
                 print("\nDuración de la partida: ", duracion)
 
-                linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion," | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
+                linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
 
                 with open("partidas_ahorcado.txt", "a", encoding="utf-8") as fichero_txt:
                     fichero_txt.write("".join(map(str, linea)))
 
                 print("\nREGISTRANDO PARTIDA...")
-                print("Partida registrada correctamente en 'partidas_ahorcado.txt'.")
+                print("Partida registrada correctamente en 'partidas_ahorcado.txt'")
 
             else:
                 partidas_perdidas += 1
@@ -319,7 +384,7 @@ if empezar.lower() == "s":
                 print("Número de errores: ", errores)
                 print("\nDuración de la partida: ", duracion)
 
-                linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion," | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
+                linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
 
                 with open("partidas_ahorcado.txt", "a", encoding="utf-8") as fichero_txt:
                     fichero_txt.write("".join(map(str, linea)))
