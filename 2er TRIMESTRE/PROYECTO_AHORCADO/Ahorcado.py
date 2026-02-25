@@ -1,12 +1,13 @@
 # JUEGO DEL AHORCADO
 
-import random
-import unicodedata
-from datetime import datetime
-import string
-import time
+# Importo las líbrerias necesarias para el programa
+import random   # Para escoger de manera aleatoria la palabra secreta de la lista de palabras
+import unicodedata   # Para eliminar los acentos de las palabras secretas y poder compararlas con las letras introducidas por el usuario sin que afecten los acentos
+from datetime import datetime   # Para registrar la fecha y hora de inicio y fin de cada partida y poder calcular la duración de cada partida y del juego en general
+import string   # Para crear una variable con el abecedario y poder comparar las letras introducidas por el usuario con el abecedario para evitar que introduzca caracteres no válidos
+import time  # Para medir el tiempo transcurrido en los modos contra reloj y finalizar la partida si al usuario se le acaba el tiempo
 
-abecedario = string.ascii_lowercase
+abecedario = string.ascii_lowercase # Variable con el abecedario en minúscula para comparar las letras introducidas con la libreía string
 
 print("JUEGO DEL AHORCADO")
 
@@ -337,7 +338,7 @@ if empezar.lower() == "s":
                 if tiempo_transcurrido >= tiempo_limite:
                     print("\nSe ha acabado el tiempo")
                     break
-                
+
             if "_" not in lista_partida:
                 partidas_ganadas += 1
 
