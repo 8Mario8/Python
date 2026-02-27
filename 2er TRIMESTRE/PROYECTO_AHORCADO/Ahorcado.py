@@ -9,13 +9,16 @@ import time  # Para medir el tiempo transcurrido en los modos contra reloj y fin
 
 abecedario = string.ascii_lowercase # Variable con el abecedario en minúscula para comparar las letras introducidas con la libreía string
 
+# Empezar el juego
 print("JUEGO DEL AHORCADO")
 
-empezar = input("¿Quieres empezar a jugar? (s/n): ")
+empezar = input("¿Quieres empezar a jugar? (s/n): ")    # Preguntar al usuario si quiere empezar a jugar
 
+# Si la respuesta no es s ni n, evitar que le programa de error y volver a preguntar al usuario hasta que la respuesta sea válida
 while empezar.lower() not in ["s", "n"]:
     empezar = input("Opción no válida. ¿Quieres empezar a jugar? (s/n): ")
 
+# Si el usuario quiere empezar a jugar, empezar el juego y mostrar los diferentes modos de juego
 if empezar.lower() == "s":
     print("\n MODOS DE JUEGO: ")
     print("   1. Modo fácil")
@@ -23,11 +26,13 @@ if empezar.lower() == "s":
     print("   3. Modo contra reloj fácil (1 minuto por palabra)")
     print("   4. Modo contra reloj difícil (30 segundos por palabra)")
 
-    modo_juego = input("\nSelecciona el modo de juego (1/2/3/4): ")
+    modo_juego = input("\nSelecciona el modo de juego (1/2/3/4): ") # Preguntar al usuario por el modo de juego que quiere jugar
 
+    # Si la respuesta no válida, evitar que le programa de error y volver a preguntar al usuario hasta que la respuesta sea válida
     while modo_juego not in ["1", "2", "3", "4"]:
         modo_juego = input("Opción no válida. Selecciona el modo de juego (1/2/3/4): ")
-
+    
+    # Mostrar las diferentes categorías de palabras para el juego
     print("\n CATEGORÍAS: ")
     print("   1. General")
     print("   2. Palabras con acentos")
@@ -45,26 +50,30 @@ if empezar.lower() == "s":
     print("  14. Economía")
     print("  15. Términos difíciles")
 
-    categoria = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+    categoria = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")  # Preguntar al usuario por la categoría que quiere jugar
 
+    # Si la respuesta no válida, evitar que le programa de error y volver a preguntar al usuario hasta que la respuesta sea válida
     while categoria not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]:
         categoria = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
     
+    # Asignar a dos listas todos las opciones de modos de juego y categorias
     modos = {"1": "facil", "2": "dificil", "3": "contra_reloj_facil", "4": "contra_reloj_dificil"}
     categorias = {"1": "general", "2": "acentos", "3": "compuestas", "4": "medicina", "5": "ciencia", "6": "deportes", "7": "madre_tierra", "8": "informatica", "9": "literatura", "10": "anglicismos", "11": "geografia", "12": "historia", "13": "derecho", "14": "economia", "15": "dificiles"}
 
+    # Utilizando las listas anteriores, asignar a dos variables el nombre del modo de juego y de la categoría seleccionados por el usuario
     nombre_modo = modos[modo_juego]
     nombre_categoria = categorias[categoria]
     
+    # Con las variables anteriores, abrir el fichero de texto correspondiente al modo y categoría seleccionados para, aleatoriamente, asignar a la palabra secreta una palabra de ese fichero 
     nombre_fichero = "palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"
     fichero_txt = open(nombre_fichero, "r", encoding="utf-8")
 
-    lista_palabrasecreta = fichero_txt.read().splitlines()
-    palabra_secreta = random.choice(lista_palabrasecreta)
-    if categoria != "2":
+    lista_palabrasecreta = fichero_txt.read().splitlines()  # Asignar las palabras del fichero a la lista de palabras secretas
+    palabra_secreta = random.choice(lista_palabrasecreta)   # Asignar de manera aleatoria una palabra de lsa lista a la palabra secreta
+    if categoria != "2":    # Si la categoría seleccionada no es la de palabras con accentos, hacer que cuando el usuario introduce una vocal que en la palabra secreta va con accento, muestre en la lista_partida la vocal con accento
         palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
-    lista_partida = []
-    lista_ahorcado = []
+    lista_partida = []  # Lista donde se almacenan la longitud de la palabra secreta con sus respectivos espacios (_ _ _ _ _ _)
+    lista_ahorcado = []    # Lista donde se almacenan las letras de la palabra ahorcado cada vez que cometes un error y se reinicia en cada palabra
     nueva_partida = "s"
     letra_ahorcado = ""
     partidas = 0
@@ -72,9 +81,9 @@ if empezar.lower() == "s":
     partidas_perdidas = 0
     errores = 0
     aciertos = 0
-    lista_aciertos = []
-    lista_errores =[]
-    lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
+    lista_aciertos = []    # Lista donde se almacenan todas las letras acertadas
+    lista_errores =[]   # Lista donde se almacenan todas las letras falladas
+    lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()    # Copi
 
     inicio_juego = datetime.now()
     fecha_inicio_juego = inicio_juego.strftime("%d-%m-%Y")
