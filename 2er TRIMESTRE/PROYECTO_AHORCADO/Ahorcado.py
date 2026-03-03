@@ -70,8 +70,10 @@ if empezar.lower() == "s":
 
     lista_palabrasecreta = fichero_txt.read().splitlines()  # Asignar las palabras del fichero a la lista de palabras secretas
     palabra_secreta = random.choice(lista_palabrasecreta)   # Asignar de manera aleatoria una palabra de lsa lista a la palabra secreta
+
     if categoria != "2":    # Si la categoría seleccionada no es la de palabras con accentos, hacer que cuando el usuario introduce una vocal que en la palabra secreta va con accento, muestre en la lista_partida la vocal con accento
         palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
+
     lista_partida = []  # Lista donde se almacenan la longitud de la palabra secreta con sus respectivos espacios (_ _ _ _ _ _)
     lista_ahorcado = []    # Lista donde se almacenan las letras de la palabra ahorcado cada vez que cometes un error y se reinicia en cada palabra
     nueva_partida = "s"
@@ -115,7 +117,7 @@ if empezar.lower() == "s":
                 else:
                     print("No se añadirá una nueva palabra al juego")   # Si el usuario no quiere introducir una nueva palabra mostrar un mensaje que diga que no se añadirá una nueva palabra
                 
-                cambio_modo = input("\n¿Quieres cambiar de modo de juego? (s/n): ")    # Preguntar al usuario si quiere cambiar el mod de juego
+                cambio_modo = input("\n¿Quieres cambiar de modo de juego? (s/n): ")    # Preguntar al usuario si quiere cambiar el modo de juego
 
                 while cambio_modo.lower() not in ["s", "n"]:    # Bucle while para evitar errores si la respuesta no es válida
                     cambio_modo = input("Opción no válida. ¿Quieres cambiar de modo de juego? (s/n): ")
@@ -138,15 +140,16 @@ if empezar.lower() == "s":
                         print("Ya has seleccionado este modo de juego en la partida anterior. Por favor, selecciona un modo de juego diferente.")
                         modo_nuevapartida = input("Selecciona el modo de juego (1/2/3/4): ")
 
-                    modos = {"1": "facil", "2": "dificil", "3": "contra_reloj_facil", "4": "contra_reloj_dificil"}
+                    nombre_modo = modos[modo_nuevapartida]  # Con la lista asignada anteriormente de modos, asignar al nombre del modo el modo de la nueva partida
 
-                    nombre_modo = modos[modo_nuevapartida]
+                    modo_juego = modo_nuevapartida  # Asignar el modo seleccionado de la nueva partida a la variable modo de juego para que, si el usuario decide despues volver a jugar, que el modo utilizado anteriormente sea el de la nueva partida y no el de la primera
                 
-                cambio_categoria = input("\n¿Quieres cambiar de categoría? (s/n): ")
+                cambio_categoria = input("\n¿Quieres cambiar de categoría? (s/n): ")    # Preguntar al usuario si quiere cambiar la categoria
 
-                while cambio_categoria.lower() not in ["s", "n"]:
+                while cambio_categoria.lower() not in ["s", "n"]:   # Bucle while para evitar errores si la respuesta no es válida
                     cambio_categoria = input("Opción no válida. ¿Quieres cambiar de categoría? (s/n): ")
                 
+                # Si el usuario quiere cambiar de categoria mostrar de nuevo las diferentes categorias
                 if cambio_categoria.lower() == "s":
 
                     print("\n CATEGORÍAS: ")
