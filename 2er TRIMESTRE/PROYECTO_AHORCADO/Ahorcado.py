@@ -83,38 +83,44 @@ if empezar.lower() == "s":
     aciertos = 0
     lista_aciertos = []    # Lista donde se almacenan todas las letras acertadas
     lista_errores =[]   # Lista donde se almacenan todas las letras falladas
-    lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()    # Copi
+    lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()    # Copia de la lista de palabras secretas para quitar la palabra ya utilizada
 
+    # Marcar el incio del juego (tiempo)
     inicio_juego = datetime.now()
-    fecha_inicio_juego = inicio_juego.strftime("%d-%m-%Y")
-    hora_inicio_juego = inicio_juego.strftime("%H:%M:%S")
+    fecha_inicio_juego = inicio_juego.strftime("%d-%m-%Y")  # Fecha de inicio
+    hora_inicio_juego = inicio_juego.strftime("%H:%M:%S")   # Hora de inicio
 
+    # Bucle while donde si el usuario quiere jugar otra partida siga jugando pero siempre que la lista de palabras no utilizadas no este vacia
     while nueva_partida.lower() == "s" and len(lista_palabrasecreta_no_utilizadas) > 0:
 
+        # Si el usuario ya ha jugado una partida (como mínimo) preguntar si quiere jugar otra partida
         if partidas > 0:
             nueva_partida = input("\n¿Quieres jugar otra vez? (s/n): ")
 
-            while nueva_partida.lower() not in ["s", "n"]:
+            while nueva_partida.lower() not in ["s", "n"]:  # Bucle while para evitar errores si la respuesta no es válida
                 nueva_partida = input("Opción no válida. ¿Quieres jugar otra vez? (s/n): ")
         
-            if nueva_partida.lower() == "s":        
+            if nueva_partida.lower() == "s":    # Si el usuario quiere jugar otra vez preguntar si quiere añadir una nueva palabra al juego
                 nueva_palabra = input("\n¿Quieres añadir una nueva palabra al juego? (s/n): ")
 
-                while nueva_palabra.lower() not in ["s", "n"]:
+                while nueva_palabra.lower() not in ["s", "n"]:  # Bucle while para evitar errores si la respuesta no es válida
                     nueva_palabra = input("Opción no válida. ¿Quieres añadir una nueva palabra al juego? (s/n): ")
 
+                # Si el usuario quiere añadir una nueva palabra hacer que introduzca la palbra que quiere añadir
                 if nueva_palabra.lower() == "s":
                     nueva_palabra = input("Introduce la nueva palabra: ")
-                    lista_palabrasecreta.append(nueva_palabra)
-                    lista_palabrasecreta_no_utilizadas.append(nueva_palabra)
+                    while nueva_palabra in lista_palabrasecreta_no_utilizadas:  # Bucle while para que si la palabra introducida ya esta en la lista de palabras no utilizadas vuelva a introducir una palabra
+                        nueva_palabra = input("La palabra ya esta en el juego. Introduce la palabra: ")
+                    lista_palabrasecreta_no_utilizadas.append(nueva_palabra)    # Añadir la palabra introducida por el usuario a la lista de palabras no utilizadas
                 else:
-                    print("No se añadirá una nueva palabra al juego")
+                    print("No se añadirá una nueva palabra al juego")   # Si el usuario no quiere introducir una nueva palabra mostrar un mensaje que diga que no se añadirá una nueva palabra
                 
-                cambio_modo = input("\n¿Quieres cambiar de modo de juego? (s/n): ")
+                cambio_modo = input("\n¿Quieres cambiar de modo de juego? (s/n): ")    # Preguntar al usuario si quiere cambiar el mod de juego
 
-                while cambio_modo.lower() not in ["s", "n"]:
+                while cambio_modo.lower() not in ["s", "n"]:    # Bucle while para evitar errores si la respuesta no es válida
                     cambio_modo = input("Opción no válida. ¿Quieres cambiar de modo de juego? (s/n): ")
                 
+                # Si el usuario quiere cambiar de modo de juego mostrar de nuevo los diferentes modos
                 if cambio_modo.lower() == "s":
 
                     print("\n MODOS DE JUEGO: ")
@@ -123,12 +129,12 @@ if empezar.lower() == "s":
                     print("   3. Modo contra reloj fácil (1 minuto por palabra)")
                     print("   4. Modo contra reloj difícil (30 segundos por palabra)")
 
-                    modo_nuevapartida = input("\nSelecciona el modo de juego (1/2/3/4): ")
+                    modo_nuevapartida = input("\nSelecciona el modo de juego (1/2/3/4): ")  # Preguntar al usuario por el modo que quiere jugar
 
-                    while modo_nuevapartida not in ["1", "2", "3", "4"]:
+                    while modo_nuevapartida not in ["1", "2", "3", "4"]:    # Bucle while para evitar errores si la respuesta no es válida
                         modo_nuevapartida = input("Opción no válida. Selecciona el modo de juego (1/2/3/4): ")
                     
-                    while modo_nuevapartida == modo_juego:
+                    while modo_nuevapartida == modo_juego:  # Bucle while para que si el modo seleccionado es igual al modo que ya ha jugado le diga al usuario que ya ha jugado ese modo y que le pida seleccionar otro modo
                         print("Ya has seleccionado este modo de juego en la partida anterior. Por favor, selecciona un modo de juego diferente.")
                         modo_nuevapartida = input("Selecciona el modo de juego (1/2/3/4): ")
 
