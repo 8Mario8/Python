@@ -70,10 +70,6 @@ if empezar.lower() == "s":
 
     lista_palabrasecreta = fichero_txt.read().splitlines()  # Asignar las palabras del fichero a la lista de palabras secretas
     palabra_secreta = random.choice(lista_palabrasecreta)   # Asignar de manera aleatoria una palabra de lsa lista a la palabra secreta
-
-    if categoria != "2":    # Si la categoría seleccionada no es la de palabras con accentos, hacer que cuando el usuario introduce una vocal que en la palabra secreta va con accento, muestre en la lista_partida la vocal con accento
-        palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
-
     lista_partida = []  # Lista donde se almacenan la longitud de la palabra secreta con sus respectivos espacios (_ _ _ _ _ _)
     lista_ahorcado = []    # Lista donde se almacenan las letras de la palabra ahorcado cada vez que cometes un error y se reinicia en cada palabra
     nueva_partida = "s"
@@ -87,6 +83,9 @@ if empezar.lower() == "s":
     lista_errores =[]   # Lista donde se almacenan todas las letras falladas
     lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()    # Copia de la lista de palabras secretas para quitar la palabra ya utilizada
 
+    if categoria != "2":    # Si la categoría seleccionada no es la de palabras con accentos, hacer que cuando el usuario introduce una vocal que en la palabra secreta va con accento, muestre en la lista_partida la vocal con accento
+        palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
+        
     # Marcar el incio del juego (tiempo)
     inicio_juego = datetime.now()
     fecha_inicio_juego = inicio_juego.strftime("%d-%m-%Y")  # Fecha de inicio
@@ -169,35 +168,38 @@ if empezar.lower() == "s":
                     print("  14. Economía")
                     print("  15. Términos difíciles")
 
-                    categoria_nuevapartida = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+                    categoria_nuevapartida = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")    # Preguntar al usuario por la categoria com la que quiere jugar
 
-                    while categoria_nuevapartida not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]:
+                    while categoria_nuevapartida not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]:  # Bucle while para evitar errores si la respuesta no es válida
                         categoria_nuevapartida = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
                     
                     while categoria_nuevapartida == categoria:
-                        print("Ya has seleccionado esta categoría en la partida anterior. Por favor, selecciona una categoría diferente.")
+                        print("Ya has seleccionado esta categoría en la partida anterior. Por favor, selecciona una categoría diferente.")  # Bucle while para que si la categoria seleccionada es igual a la categoria que ya ha jugado le diga al usuario que ya ha jugado esa categoria y que le pida seleccionar otra categoria
                         categoria_nuevapartida = input("Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
 
-                    categorias = {"1": "general", "2": "acentos", "3": "compuestas", "4": "medicina", "5": "ciencia", "6": "deportes", "7": "madre_tierra", "8": "informatica", "9": "literatura", "10": "anglicismos", "11": "geografia", "12": "historia", "13": "derecho", "14": "economia", "15": "dificiles"}
+                    nombre_categoria = categorias[categoria_nuevapartida]   # Con la lista asignada anteriormente de categorias, asignar al nombre de la categoria la categoria de la nueva partida
 
-                    nombre_categoria = categorias[categoria_nuevapartida]
-
-                nombre_fichero = "palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"
-                fichero_txt = open(nombre_fichero, "r", encoding = "utf-8")
+                nombre_fichero = "palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"   # Con el modo y la categoria seleccionadas poner el nombre del fichero correspondiente
+                fichero_txt = open(nombre_fichero, "r", encoding = "utf-8")    # Con el nombre del fichero ya actualizado, abrir el txt correspondiente
                 
+                # Iniciar las variables para la nueva partida
                 errores = 0
                 aciertos = 0
                 lista_palabrasecreta_no_utilizadas = fichero_txt.read().splitlines()
                 palabra_secreta = random.choice(lista_palabrasecreta_no_utilizadas)
-                if cambio_categoria.lower() == "s":
-                    if categoria_nuevapartida != "2":
-                        palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
-                    categoria = categoria_nuevapartida
-                else:
-                    if categoria != "2":
-                        palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')    
                 lista_partida = []
                 lista_ahorcado = []
+
+                if cambio_categoria.lower() == "s":    # Si el usuario ha cambiado la categoria ver si la nueva es la categoria de palabras con accentos
+
+                    if categoria_nuevapartida != "2":   # Ver si la categoria de la nueva partida es la de palabras con accentos
+                        palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
+                    categoria = categoria_nuevapartida  # Asignar la categoria seleccionada de la nueva partida a la variable categoria para que, si el usuario decide despues volver a jugar, que la categoria utilizada anteriormente sea la de la nueva partida y no la de la primera (esto lo aplico aquí para que no afecte al if anterior)
+
+                else:   # Si el usuario no ha cambiado la categoria ver si la categoria es la de palabras con accentos
+
+                    if categoria != "2":    # Ver si la categoria es la de palabras con accentos
+                        palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
         
         if nueva_partida.lower() == "s" or partidas == 0:
             inicio = datetime.now()
