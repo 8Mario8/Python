@@ -204,23 +204,26 @@ if empezar.lower() == "s":
                     if categoria != "2":    # Ver si la categoria es la de palabras con accentos
                         palabra_secreta_sin_acentos = ''.join(c for c in unicodedata.normalize('NFD', palabra_secreta) if unicodedata.category(c) != 'Mn')
         
+        # Iniciar la partida
         if nueva_partida.lower() == "s" or partidas == 0:
+            # Marcar el inicio de la partida (tiempo de duración de la partida)
             inicio = datetime.now()
-            fecha_inicio = inicio.strftime("%d-%m-%Y")
-            hora_inicio = inicio.strftime("%H:%M:%S")
+            fecha_inicio = inicio.strftime("%d-%m-%Y")  # Fecha de inicio
+            hora_inicio = inicio.strftime("%H:%M:%S")   # Hora de inicio
 
-            partidas += 1
+            partidas += 1   # Sumar uno al número de partidas jugadas
 
+            # Ver si el modo de juego seleccionado es de contra reloj (3 o 4)
             if modo_juego in ["3", "4"]:
 
-                if modo_juego == "3":
+                if modo_juego == "3":   # Si el modo es el 3, poner un tiempo límite de 60 segundos
                     tiempo_limite = 60
-                else:
+                else:   # Si el modo es el 4, poner un tiempo límite de 30 segundos
                     tiempo_limite = 30
 
-                print("\nTienes ", tiempo_limite, " segundos para adivinar la palabra")
+                print("\nTienes ", tiempo_limite, " segundos para adivinar la palabra")    # Mostrar al usuario el tiempo límite
 
-                tiempo_inicio = time.time()
+                tiempo_inicio = time.time()    # Marcar el tiempo de inicio para ver si al usuario se le acaba el tiempo límite
 
             while len(palabra_secreta) > len(lista_partida):
                 lista_partida.append("_")
