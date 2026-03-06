@@ -80,7 +80,9 @@ if empezar.lower() == "s":
     errores = 0
     aciertos = 0
     lista_aciertos = []    # Lista donde se almacenan todas las letras acertadas
+    lista_letras_partida = []    # Lista donde se almacenan las letras utilizadas durante la partida y se reinicia en cada partida
     lista_errores =[]   # Lista donde se almacenan todas las letras falladas
+    letras_con_acento = ["á", "é", "í", "ó", "ú"]   # Lista con las vocales con acento
     lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()    # Copia de la lista de palabras secretas para quitar la palabra ya utilizada
 
     if categoria != "2":    # Si la categoría seleccionada no es la de palabras con accentos, hacer que cuando el usuario introduce una vocal que en la palabra secreta va con accento, muestre en la lista_partida la vocal con accento
@@ -189,6 +191,7 @@ if empezar.lower() == "s":
                 palabra_secreta = random.choice(lista_palabrasecreta_no_utilizadas)
                 lista_partida = []
                 lista_ahorcado = []
+                lista_letras_partida = []
 
                 if cambio_categoria.lower() == "s":    # Si el usuario ha cambiado la categoria ver si la nueva es la categoria de palabras con accentos
 
@@ -263,7 +266,17 @@ if empezar.lower() == "s":
                 else:
                     letra = input("Introduce una letra: ").lower()
 
-                    if categoria != "2" and categoria_nuevapartida != "2":
+                    while letra in lista_letras_partida:
+                        letra = input("Letra ya introducida. Introduce una letra: ").lower()
+
+                    if letra not in letras_con_acento:
+
+                        if letra not in abecedario:
+
+                            while letra not in abecedario:
+                                letra = input("Tienes que introducuir una letra. Introduce una letra: ").lower()
+
+                    if categoria != "2":
 
                         if letra in palabra_secreta_sin_acentos.lower():
 
@@ -307,6 +320,8 @@ if empezar.lower() == "s":
                                     print(" ".join(lista_ahorcado))
             
                                     lista_errores.append(letra)
+
+                                lista_letras_partida.append(letra)
                     
                     else:
 
@@ -352,6 +367,8 @@ if empezar.lower() == "s":
                                     print(" ".join(lista_ahorcado))
 
                                     lista_errores.append(letra)
+
+                                lista_letras_partida.append(letra)
                 
                 tiempo_transcurrido = time.time() - tiempo_inicio
 
