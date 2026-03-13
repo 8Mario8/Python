@@ -226,8 +226,9 @@ if empezar.lower() == "s":
                 tiempo_inicio = time.time()    # Marcar el tiempo de inicio para ver si al usuario se le acaba el tiempo límite
 
             while len(palabra_secreta) > len(lista_partida):
-                lista_partida.append("_")
+                lista_partida.append("_")   # Poner en la lista partida tantos _ como el número de carácteres de la palabra secreta
             
+            # Mirar si hay espacios en la palabra secreta para cambiar la posición del espacio en la lista partida por un espacio
             if " " in palabra_secreta:
 
                 for i in range(len(palabra_secreta)):
@@ -235,17 +236,19 @@ if empezar.lower() == "s":
                     if palabra_secreta[i] == " ":
                         lista_partida[i] = " "
 
+            # Bucle mientras el usuario no haya acertado la palabra o no haya cometido 8 errores y no haya completado la lista con la palabra ahorcado
             while len(lista_ahorcado) < 8 and "_" in lista_partida:
-                print("\nPalabra secreta: ", " ".join(lista_partida))
+                print("\nPalabra secreta: ", " ".join(lista_partida))   # Print la lista partida con las letras acertadas
 
-                adivinar_palabra = input("¿Quieres adivinar la palabra? (s/n): ")
+                adivinar_palabra = input("¿Quieres adivinar la palabra? (s/n): ")   # Preguntar al usuario si quiere adivinar la palabra
 
-                while adivinar_palabra.lower() not in ["s", "n"]:
+                while adivinar_palabra.lower() not in ["s", "n"]:   # Bucle while para evitar errores si la respuesta no es válida
                     adivinar_palabra = input("Opción no válida. ¿Quieres adivinar la palabra? (s/n): ")
 
-                if adivinar_palabra.lower() == "s":
+                if adivinar_palabra.lower() == "s":    # Si el usuario quiere adivinar la palabra preguntarle por la palabra
                     palabra_usuario = input("Introduce la palabra que crees que es: ")
 
+                    # Si la palabra introducida por el usuario es igual a la secreta
                     if palabra_usuario.lower() == palabra_secreta.lower() or palabra_usuario.lower() == palabra_secreta_sin_acentos.lower():
                         aciertos += lista_partida.count("_")
                         lista_aciertos.append(palabra_usuario)
