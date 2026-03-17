@@ -65,7 +65,7 @@ if empezar.lower() == "s":
     nombre_categoria = categorias[categoria]
     
     # Con las variables anteriores, abrir el fichero de texto correspondiente al modo y categoría seleccionados para, aleatoriamente, asignar a la palabra secreta una palabra de ese fichero 
-    nombre_fichero = "palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"
+    nombre_fichero = str(map("palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"))
     fichero_txt = open(nombre_fichero, "r", encoding="utf-8")
 
     lista_palabrasecreta = fichero_txt.read().splitlines()  # Asignar las palabras del fichero a la lista de palabras secretas
@@ -94,7 +94,7 @@ if empezar.lower() == "s":
     hora_inicio_juego = inicio_juego.strftime("%H:%M:%S")   # Hora de inicio
 
     # Bucle while donde si el usuario quiere jugar otra partida siga jugando pero siempre que la lista de palabras no utilizadas no este vacia
-    while nueva_partida.lower() == "s" and len(lista_palabrasecreta_no_utilizadas) > 0:
+    while nueva_partida.lower() == "s":
 
         # Si el usuario ya ha jugado una partida (como mínimo) preguntar si quiere jugar otra partida
         if partidas > 0:
@@ -181,7 +181,7 @@ if empezar.lower() == "s":
 
                     nombre_categoria = categorias[categoria_nuevapartida]   # Con la lista asignada anteriormente de categorias, asignar al nombre de la categoria la categoria de la nueva partida
 
-                nombre_fichero = "palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"   # Con el modo y la categoria seleccionadas poner el nombre del fichero correspondiente
+                nombre_fichero = str(map("palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"))   # Con el modo y la categoria seleccionadas poner el nombre del fichero correspondiente
                 fichero_txt = open(nombre_fichero, "r", encoding = "utf-8")    # Con el nombre del fichero ya actualizado, abrir el txt correspondiente
                 
                 # Iniciar las variables para la nueva partida
@@ -248,14 +248,14 @@ if empezar.lower() == "s":
                 if adivinar_palabra.lower() == "s":    # Si el usuario quiere adivinar la palabra preguntarle por la palabra
                     palabra_usuario = input("Introduce la palabra que crees que es: ")
 
-                    # Si la palabra introducida por el usuario es igual a la secreta
+                    # Si la palabra introducida por el usuario es igual a la palabra secreta, contar los aciertos y añadir a la lista de aciertos la palabra del usuario
                     if palabra_usuario.lower() == palabra_secreta.lower() or palabra_usuario.lower() == palabra_secreta_sin_acentos.lower():
                         aciertos += lista_partida.count("_")
                         lista_aciertos.append(palabra_usuario)
 
                         lista_partida = list(palabra_secreta)
 
-                    else:
+                    else:   # Si no es igual, entonces, contar los aciertos, mostrar un mensaje diciendo que la palabra es incorrecta y mostrar la lista ahorcado con todas las letras
                         errores += lista_partida.count("_")
 
                         print("Palabra incorrecta")
@@ -267,22 +267,26 @@ if empezar.lower() == "s":
 
                         print(" ".join(lista_ahorcado))
 
-                        lista_errores.append(palabra_usuario)
+                        lista_errores.append(palabra_usuario)   # Añadir a la lista de errores la palabra del usuario
 
-                else:
+                else:   # Si el usuario no quiere adivinar la palabra, preguntar por una letra
                     letra = input("Introduce una letra: ").lower()
 
-                    while letra in lista_letras_partida:
+                    while letra in lista_letras_partida:    # Evitar errores si la respuesta no es una letra
                         letra = input("Letra ya introducida. Introduce una letra: ").lower()
 
                     if letra not in letras_con_acento:
 
                         if letra not in abecedario:
 
-                            while letra not in abecedario:
+                            while letra not in abecedario:    # Comprovar que la letra introducida este en el abecedario o sea una letra con acento, si no lo es preguntar por otra letra
                                 letra = input("Tienes que introducuir una letra. Introduce una letra: ").lower()
+                    
+                    # Si el usuario no està jugando con la categoria con acentos, si la letra introducida lleva acento quitarselo
+                    if letra in letras_con_acento and categoria != "2":
+                        letra = unicodedata.normalize("NFD", letra)
 
-                    if categoria != "2":
+                    if categoria != "2":    # Si la categoria no es la de palabras con acento, comprovar las letras con la palabra secreta sin acentos
 
                         if letra in palabra_secreta_sin_acentos.lower():
 
@@ -329,7 +333,7 @@ if empezar.lower() == "s":
 
                                 lista_letras_partida.append(letra)
                     
-                    else:
+                    else:   # Si la categoria es la de palabras con acento, comprovar las letras con la palabra secreta con acentos
 
                         if letra in palabra_secreta.lower():
 
@@ -376,15 +380,19 @@ if empezar.lower() == "s":
 
                                 lista_letras_partida.append(letra)
                 
-                tiempo_transcurrido = time.time() - tiempo_inicio
+                # Si el usuario està jugando a alguno de los modos de contrareloj, ver si se le ha acabado el tiempo
+                if modo_juego in [3, 4]:
+                    tiempo_transcurrido = time.time() - tiempo_inicio
 
-                if tiempo_transcurrido >= tiempo_limite:
-                    print("\nSe ha acabado el tiempo")
-                    break
+                    if tiempo_transcurrido >= tiempo_limite:
+                        print("\nSe ha acabado el tiempo")
+                        break
 
+            # Si el usuario ha acertado la palabra, sumar uno a las partidas ganadas
             if "_" not in lista_partida:
                 partidas_ganadas += 1
 
+                # Marcar el tiempo final de la partida
                 fin = datetime.now()
                 fecha_fin = fin.strftime("%d-%m-%Y")
                 hora_fin = fin.strftime("%H:%M:%S")
@@ -395,12 +403,14 @@ if empezar.lower() == "s":
                 duracion = minutos, "minutos y ", segundos, "segundos"
                 duracion = " ".join(map(str, duracion))
 
+                # Mostrar al usuario la palabra secreta, un mensaje dando la enhorabuena, el numero de aciertos y errores y la duración de la partida
                 print("\nPalabra secreta: ", " ".join(lista_partida))
                 print("\n¡Felicidades, has adivinado la palabra!")
                 print("\nNúmero de aciertos: ", aciertos)
                 print("Número de errores: ", errores)
                 print("\nDuración de la partida: ", duracion)
 
+                # Registrar la partida
                 linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
 
                 with open("partidas_ahorcado.txt", "a", encoding="utf-8") as fichero_txt:
@@ -409,9 +419,11 @@ if empezar.lower() == "s":
                 print("\nREGISTRANDO PARTIDA...")
                 print("Partida registrada correctamente en 'partidas_ahorcado.txt'")
 
+            # Si el usuario no ha acertado la palabra, sumar uno a las partidas perdidas
             else:
                 partidas_perdidas += 1
 
+                # Marcar el tiempo final de la partida
                 fin = datetime.now()
                 fecha_fin = fin.strftime("%d-%m-%Y")
                 hora_fin = fin.strftime("%H:%M:%S")
@@ -422,12 +434,14 @@ if empezar.lower() == "s":
                 duracion = minutos, "minutos y ", segundos, "segundos"
                 duracion = " ".join(map(str, duracion))
 
+                # Mostrar al usuario un mensaje diciendo que ha perdido, la palabra secreta, el numero de aciertos y errores y la duración de la partida
                 print("\nHas perdido")
                 print("\nLa palabra secreta era: ", palabra_secreta)
                 print("\nNúmero de aciertos: ", aciertos)
                 print("Número de errores: ", errores)
                 print("\nDuración de la partida: ", duracion)
 
+                # Registrar la partida
                 linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
 
                 with open("partidas_ahorcado.txt", "a", encoding="utf-8") as fichero_txt:
@@ -435,12 +449,11 @@ if empezar.lower() == "s":
 
                 print("\nREGISTRANDO PARTIDA...")
                 print("Partida registrada correctamente en 'partidas_ahorcado.txt'.")
-
-    if len(lista_palabrasecreta_no_utilizadas) == 0:
-        print("\nNo quedan más palabras disponibles para seguir. Gracias por jugar al Ahorcado.")
     
+    # Al finalizar el juego cerrar el fichero txt
     fichero_txt.close()
     
+    # Marcar el tiempo final del juego
     fin_juego = datetime.now()
     fecha_fin_juego = fin_juego.strftime("%d-%m-%Y")
     hora_fin_juego = fin_juego.strftime("%H:%M:%S")
@@ -451,6 +464,7 @@ if empezar.lower() == "s":
     duracion = minutos, "minutos y ", segundos, "segundos"
     duracion = " ".join(map(str, duracion))
     
+    # Mostrar al usuario un resumen del juego
     print("\nREUMEN DEL JUEGO")
     print("\n Errores y Aciertos")
     print("    Errores: ", ", ".join(lista_errores))
@@ -466,5 +480,5 @@ if empezar.lower() == "s":
 
     print("\nFIN DEL JUEGO")
 
-else:
+else:   # Si el usuario no quiere empezar a jugar, finalizar el juego
     print("FIN DEL JUEGO")
