@@ -12,7 +12,10 @@ while multiplicaciones < 10:
     multi = input(mult)
 
     if num1 * num2 == int(multi):
+        print("Correcto")
         num_aciertos += 1
+    else:
+        print("Incorrecto")
     
     multiplicaciones += 1
     respuestas.append(str(num1*num2))
