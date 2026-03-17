@@ -9,7 +9,7 @@ while multiplicaciones < 10:
     num2 = random.randint(0,10)
 
     mult = num1, "x", num2, "= "
-    multi = int(input(mult))
+    multi = input(mult)
 
     if num1 * num2 == int(multi):
         num_aciertos += 1
