@@ -65,7 +65,7 @@ if empezar.lower() == "s":
     nombre_categoria = categorias[categoria]
     
     # Con las variables anteriores, abrir el fichero de texto correspondiente al modo y categoría seleccionados para, aleatoriamente, asignar a la palabra secreta una palabra de ese fichero 
-    nombre_fichero = str(map("palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"))
+    nombre_fichero = str(map(list("palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt")))
     fichero_txt = open(nombre_fichero, "r", encoding="utf-8")
 
     lista_palabrasecreta = fichero_txt.read().splitlines()  # Asignar las palabras del fichero a la lista de palabras secretas
@@ -181,7 +181,7 @@ if empezar.lower() == "s":
 
                     nombre_categoria = categorias[categoria_nuevapartida]   # Con la lista asignada anteriormente de categorias, asignar al nombre de la categoria la categoria de la nueva partida
 
-                nombre_fichero = str(map("palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt"))   # Con el modo y la categoria seleccionadas poner el nombre del fichero correspondiente
+                nombre_fichero = str(map(list("palabras_ahorcado_", nombre_categoria, "_", nombre_modo, ".txt")))   # Con el modo y la categoria seleccionadas poner el nombre del fichero correspondiente
                 fichero_txt = open(nombre_fichero, "r", encoding = "utf-8")    # Con el nombre del fichero ya actualizado, abrir el txt correspondiente
                 
                 # Iniciar las variables para la nueva partida
