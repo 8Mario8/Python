@@ -342,7 +342,8 @@ if empezar.lower() == "s":
                 # Si el usuario està jugando a alguno de los modos de contrareloj, ver si se le ha acabado el tiempo
                 if modo_juego in [3, 4]:
                     tiempo_final = datetime.now()
-                    tiempo_transcurrido = int((tiempo_final - tiempo_inicio).total_seconds())
+                    tiempo_segundos = int((tiempo_final - tiempo_inicio).total_seconds())
+                    tiempo_transcurrido = tiempo_segundos
 
                     if tiempo_transcurrido >= tiempo_limite:
                         print("\nSe ha acabado el tiempo")
