@@ -247,6 +247,8 @@ if empezar.lower() == "s":
                         print("\nSe ha acabado el tiempo")
                         break
 
+                    print(int(tiempo_restante), "segundos restantes")  # El usuario ve el tiempo que le falta
+
                 print("\nPalabra secreta: ", " ".join(lista_partida))   # Print la lista partida con las letras acertadas
 
                 adivinar_palabra = input("¿Quieres adivinar la palabra? (s/n): ")   # Preguntar al usuario si quiere adivinar la palabra
