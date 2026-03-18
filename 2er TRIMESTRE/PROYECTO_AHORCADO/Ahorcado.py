@@ -223,7 +223,7 @@ if empezar.lower() == "s":
 
                 print("\nTienes ", tiempo_limite, " segundos para adivinar la palabra")    # Mostrar al usuario el tiempo límite
 
-                tiempo_inicio = datetime.now()    # Marcar el tiempo de inicio para ver si al usuario se le acaba el tiempo límite
+                tiempo_inicio = time.time()    # Marcar el tiempo de inicio para ver si al usuario se le acaba el tiempo límite
 
             while len(palabra_secreta) > len(lista_partida):
                 lista_partida.append("_")   # Poner en la lista partida tantos _ como el número de carácteres de la palabra secreta
@@ -238,6 +238,15 @@ if empezar.lower() == "s":
 
             # Bucle mientras el usuario no haya acertado la palabra o no haya cometido 8 errores y no haya completado la lista con la palabra ahorcado
             while len(lista_ahorcado) < 8 and "_" in lista_partida:
+
+                # Si el usuario està jugando a alguno de los modos de contrareloj, ver si se le ha acabado el tiempo
+                if modo_juego in ["3", "4"]:
+                    tiempo_restante = tiempo_limite - (time.time() - tiempo_inicio)
+
+                    if tiempo_restante <= 0:
+                        print("\nSe ha acabado el tiempo")
+                        break
+
                 print("\nPalabra secreta: ", " ".join(lista_partida))   # Print la lista partida con las letras acertadas
 
                 adivinar_palabra = input("¿Quieres adivinar la palabra? (s/n): ")   # Preguntar al usuario si quiere adivinar la palabra
@@ -338,16 +347,6 @@ if empezar.lower() == "s":
                         lista_errores.append(letra)
 
                     lista_letras_partida.append(letra)
-                
-                # Si el usuario està jugando a alguno de los modos de contrareloj, ver si se le ha acabado el tiempo
-                if modo_juego in [3, 4]:
-                    tiempo_final = datetime.now()
-                    tiempo_segundos = int((tiempo_final - tiempo_inicio).total_seconds())
-                    tiempo_transcurrido = tiempo_segundos
-
-                    if tiempo_transcurrido >= tiempo_limite:
-                        print("\nSe ha acabado el tiempo")
-                        break
 
             # Si el usuario ha acertado la palabra, sumar uno a las partidas ganadas
             if "_" not in lista_partida:
