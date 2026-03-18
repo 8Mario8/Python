@@ -282,103 +282,62 @@ if empezar.lower() == "s":
                             while letra not in abecedario:    # Comprovar que la letra introducida este en el abecedario o sea una letra con acento, si no lo es preguntar por otra letra
                                 letra = input("Tienes que introducuir una letra. Introduce una letra: ").lower()
                     
-                    # Si el usuario no està jugando con la categoria con acentos, si la letra introducida lleva acento quitarselo
+                    # Normalizar la letra del usuario (quitar acentos si no es la categoría 2)
+                    letra_normalizada = letra
                     if letra in letras_con_acento and categoria != "2":
-                        letra = unicodedata.normalize("NFD", letra)
+                        letra_normalizada = unicodedata.normalize("NFD", letra)[0].lower()
 
-                    if categoria != "2":    # Si la categoria no es la de palabras con acento, comprovar las letras con la palabra secreta sin acentos
+                    # Normalizar la palabra secreta para comparar
+                    if categoria != "2":
+                        palabra_para_comparar = palabra_secreta_sin_acentos.lower()
 
-                        if letra in palabra_secreta_sin_acentos.lower():
+                    else:
+                        palabra_para_comparar = palabra_secreta.lower()
 
-                            for i in range(len(palabra_secreta_sin_acentos)):
+                    # Comprobar si la letra está en la palabra
+                    if letra_normalizada in palabra_para_comparar:
+                        
+                        for i in range(len(palabra_secreta)):   # Reemplazar todas las ocurrencias de la letra
+                            
+                            if palabra_para_comparar[i] == letra_normalizada:
+                                lista_partida[i] = palabra_secreta[i]
 
-                                if palabra_secreta_sin_acentos[i] == letra:
-                                    lista_partida[i] = palabra_secreta[i]
-                                    aciertos += 1
+                                aciertos += 1
+                                lista_aciertos.append(letra)
 
-                                    lista_aciertos.append(letra)
+                    else:
+                        errores += 1
+                        if errores == 1:
+                            letra_ahorcado = "A"
 
-                                else:
-                                    errores += 1
-            
-                                    if errores == 1:
-                                        letra_ahorcado = "A"
-            
-                                    elif errores == 2:
-                                        letra_ahorcado = "H"
-            
-                                    elif errores == 3:
-                                        letra_ahorcado = "O"
-            
-                                    elif errores == 4:
-                                        letra_ahorcado = "R"
-            
-                                    elif errores == 5:
-                                        letra_ahorcado = "C"
-            
-                                    elif errores == 6:
-                                        letra_ahorcado = "A"
-            
-                                    elif errores == 7:
-                                        letra_ahorcado = "D"
-            
-                                    elif errores == 8:
-                                        letra_ahorcado = "O"
-            
-                                    print("Letra incorrecta")
-                                    lista_ahorcado.append(letra_ahorcado)
-                                    print(" ".join(lista_ahorcado))
-            
-                                    lista_errores.append(letra)
+                        elif errores == 2:
+                            letra_ahorcado = "H"
 
-                                lista_letras_partida.append(letra)
-                    
-                    else:   # Si la categoria es la de palabras con acento, comprovar las letras con la palabra secreta con acentos
+                        elif errores == 3:
+                            letra_ahorcado = "O"
 
-                        if letra in palabra_secreta.lower():
+                        elif errores == 4:
+                            letra_ahorcado = "R"
 
-                            for i in range(len(palabra_secreta)):
+                        elif errores == 5:
+                            letra_ahorcado = "C"
 
-                                if palabra_secreta[i].lower() == letra:
-                                    lista_partida[i] = palabra_secreta[i]
-                                    aciertos += 1
+                        elif errores == 6:
+                            letra_ahorcado = "A"
 
-                                    lista_aciertos.append(letra)
+                        elif errores == 7:
+                            letra_ahorcado = "D"
 
-                                else:
-                                    errores += 1
+                        elif errores == 8:
+                            letra_ahorcado = "O"
 
-                                    if errores == 1:
-                                        letra_ahorcado = "A"
+                        print("Letra incorrecta")
+                        lista_ahorcado.append(letra_ahorcado)
+                        print(" ".join(lista_ahorcado))
 
-                                    elif errores == 2:
-                                        letra_ahorcado = "H"
+                        lista_errores.append(letra)
 
-                                    elif errores == 3:
-                                        letra_ahorcado = "O"
-
-                                    elif errores == 4:
-                                        letra_ahorcado = "R"
-
-                                    elif errores == 5:
-                                        letra_ahorcado = "C"
-
-                                    elif errores == 6:
-                                        letra_ahorcado = "A"
-
-                                    elif errores == 7:
-                                        letra_ahorcado = "D"
-
-                                    elif errores == 8:
-                                        letra_ahorcado = "O"
-
-                                    print("Letra incorrecta")
-                                    lista_ahorcado.append(letra_ahorcado)
-                                    print(" ".join(lista_ahorcado))
-
-                                    lista_errores.append(letra)
-
-                                lista_letras_partida.append(letra)
+                    lista_letras_partida.append(letra)
                 
                 # Si el usuario està jugando a alguno de los modos de contrareloj, ver si se le ha acabado el tiempo
                 if modo_juego in [3, 4]:
