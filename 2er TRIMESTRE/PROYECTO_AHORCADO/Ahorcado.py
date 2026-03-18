@@ -223,7 +223,7 @@ if empezar.lower() == "s":
 
                 print("\nTienes ", tiempo_limite, " segundos para adivinar la palabra")    # Mostrar al usuario el tiempo límite
 
-                tiempo_inicio = time.time()    # Marcar el tiempo de inicio para ver si al usuario se le acaba el tiempo límite
+                tiempo_inicio = datetime.now()    # Marcar el tiempo de inicio para ver si al usuario se le acaba el tiempo límite
 
             while len(palabra_secreta) > len(lista_partida):
                 lista_partida.append("_")   # Poner en la lista partida tantos _ como el número de carácteres de la palabra secreta
@@ -341,7 +341,8 @@ if empezar.lower() == "s":
                 
                 # Si el usuario està jugando a alguno de los modos de contrareloj, ver si se le ha acabado el tiempo
                 if modo_juego in [3, 4]:
-                    tiempo_transcurrido = time.time() - tiempo_inicio
+                    tiempo_final = datetime.now()
+                    tiempo_transcurrido = int((tiempo_final - tiempo_inicio).total_seconds())
 
                     if tiempo_transcurrido >= tiempo_limite:
                         print("\nSe ha acabado el tiempo")
