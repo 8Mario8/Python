@@ -353,7 +353,7 @@ if empezar.lower() == "s":
                 print("\nDuración de la partida: ", duracion)
 
                 # Registrar la partida
-                linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
+                linea = "\n -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
 
                 with open("partidas_ahorcado.txt", "a", encoding="utf-8") as fichero_txt:
                     fichero_txt.write("".join(map(str, linea)))
@@ -384,7 +384,7 @@ if empezar.lower() == "s":
                 print("\nDuración de la partida: ", duracion)
 
                 # Registrar la partida
-                linea = " -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
+                linea = "\n -  | Inicio: ", fecha_inicio, " ", hora_inicio, " | Fin: ", fecha_fin, " ", hora_fin, " | Duración: ", duracion, " | Modo de juego: ", modo_juego, " | Categoría: ", categoria, " | Palabra secreta: ", palabra_secreta, " | Número de aciertos: ", aciertos, " | Número de errores: ", errores,"\n"
 
                 with open("partidas_ahorcado.txt", "a", encoding="utf-8") as fichero_txt:
                     fichero_txt.write("".join(map(str, linea)))
