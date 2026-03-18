@@ -39,26 +39,21 @@ if empezar.lower() == "s":
     print("   3. Palabras compuestas")
     print("   4. Medicina")
     print("   5. Ciencia")
-    print("   6. Deportes")
-    print("   7. Madre Tierra")
-    print("   8. Informática")
-    print("   9. Literatura")
-    print("  10. anglicismos")
-    print("  11. Geografía")
-    print("  12. Historia")
-    print("  13. Derecho")
-    print("  14. Economía")
-    print("  15. Términos difíciles")
+    print("   6. Literatura")
+    print("   7. Geografía")
+    print("   8. Historia")
+    print("   9. Derecho")
+    print("  10. Economía")
 
-    categoria = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")  # Preguntar al usuario por la categoría que quiere jugar
+    categoria = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10): ")  # Preguntar al usuario por la categoría que quiere jugar
 
     # Si la respuesta no válida, evitar que le programa de error y volver a preguntar al usuario hasta que la respuesta sea válida
-    while categoria not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]:
-        categoria = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+    while categoria not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]:
+        categoria = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10): ")
     
     # Asignar a dos listas todos las opciones de modos de juego y categorias
     modos = {"1": "facil", "2": "dificil", "3": "contra_reloj_facil", "4": "contra_reloj_dificil"}
-    categorias = {"1": "general", "2": "acentos", "3": "compuestas", "4": "medicina", "5": "ciencia", "6": "deportes", "7": "madre_tierra", "8": "informatica", "9": "literatura", "10": "anglicismos", "11": "geografia", "12": "historia", "13": "derecho", "14": "economia", "15": "dificiles"}
+    categorias = {"1": "general", "2": "acentos", "3": "compuestas", "4": "medicina", "5": "ciencia", "6": "literatura", "7": "geografia", "8": "historia", "9": "derecho", "10": "economia"}
 
     # Utilizando las listas anteriores, asignar a dos variables el nombre del modo de juego y de la categoría seleccionados por el usuario
     nombre_modo = modos[modo_juego]
@@ -159,25 +154,20 @@ if empezar.lower() == "s":
                     print("   3. Palabras compuestas")
                     print("   4. Medicina")
                     print("   5. Ciencia")
-                    print("   6. Deportes")
-                    print("   7. Madre Tierra")
-                    print("   8. Informática")
-                    print("   9. Literatura")
-                    print("  10. anglicismos")
-                    print("  11. Geografía")
-                    print("  12. Historia")
-                    print("  13. Derecho")
-                    print("  14. Economía")
-                    print("  15. Términos difíciles")
+                    print("   6. Literatura")
+                    print("   7. Geografía")
+                    print("   8. Historia")
+                    print("   9. Derecho")
+                    print("  10. Economía")
 
-                    categoria_nuevapartida = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")    # Preguntar al usuario por la categoria com la que quiere jugar
+                    categoria_nuevapartida = input("\nSelecciona la categoría (1/2/3/4/5/6/7/8/9/10): ")    # Preguntar al usuario por la categoria com la que quiere jugar
 
-                    while categoria_nuevapartida not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]:  # Bucle while para evitar errores si la respuesta no es válida
-                        categoria_nuevapartida = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+                    while categoria_nuevapartida not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]:  # Bucle while para evitar errores si la respuesta no es válida
+                        categoria_nuevapartida = input("Opción no válida. Selecciona la categoría (1/2/3/4/5/6/7/8/9/10): ")
                     
                     while categoria_nuevapartida == categoria:
                         print("Ya has seleccionado esta categoría en la partida anterior. Por favor, selecciona una categoría diferente.")  # Bucle while para que si la categoria seleccionada es igual a la categoria que ya ha jugado le diga al usuario que ya ha jugado esa categoria y que le pida seleccionar otra categoria
-                        categoria_nuevapartida = input("Selecciona la categoría (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15): ")
+                        categoria_nuevapartida = input("Selecciona la categoría (1/2/3/4/5/6/7/8/9/10): ")
 
                     nombre_categoria = categorias[categoria_nuevapartida]   # Con la lista asignada anteriormente de categorias, asignar al nombre de la categoria la categoria de la nueva partida
 
