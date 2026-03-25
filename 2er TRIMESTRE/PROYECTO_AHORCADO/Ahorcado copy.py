@@ -32,7 +32,7 @@ compuestas_dificil = ["permanganato potásico", "celulosa poliglucosa", "noradre
 compuestas_contra_reloj_facil = ["paraguas", "parasol", "sacapuntas", "abrelatas", "sacacorchos", "cortaplumas", "lavaplatos", "limpiacristales", "quitamanchas", "cortacésped"]
 compuestas_contra_reloj_dificil = ["permanganato potásico", "celulosa poliglucosa", "noradrenalina norepinefrina", "testosterona andrógeno", "aspirina ácidoacetilsalicílico", "atropina alcaloide", "fenobarbital barbitúrico", "carbamazepina antiepiléptico", "estreptokinasa fibrinolítico", "montelukast antileucotrieno"]
 medicina_facil = ["estetoscopio", "articulación", "yodo", "alcohol", "aspirina", "suero", "oxígeno", "quirófano", "convulsión", "parálisis"]
-medicina_dificil = ["otorrinolaringología"]
+medicina_dificil = ["otorrinolaringología", "farmacogenética", "electroencefalograma", "electrocardiograma", "ecocardiograma", "hipoparatiroidismo", "hiperparatiroidismo", "diverticulitis", "peritonitis", "meningitis"]
 
 # Si el usuario quiere empezar a jugar, empezar el juego y mostrar los diferentes modos de juego
 if empezar.lower() == "s":
