@@ -69,72 +69,72 @@ if empezar.lower() == "s":
         categoria = input("Opción no válida. Selecciona la categoría (1/2/3/4/5): ")
     
     # Con las variables anteriores, utilizar la lista correspondiente al modo y categoría seleccionados para, aleatoriamente, asignar a la palabra secreta una palabra de esa lista
-    if modo_juego == 1:
+    if modo_juego == '1':
 
-        if categoria == 1:
+        if categoria == '1':
             lista_palabrasecreta = general_facil
 
-        if categoria == 2:
+        if categoria == '2':
             lista_palabrasecreta = acentos_facil
 
-        if categoria == 3:
+        if categoria == '3':
             lista_palabrasecreta = compuestas_facil
 
-        if categoria == 4:
+        if categoria == '4':
             lista_palabrasecreta = medicina_facil
 
-        if categoria == 5:
+        if categoria == '5':
             lista_palabrasecreta = ciencia_facil
         
-    if modo_juego == 2:
+    if modo_juego == '2':
 
-        if categoria == 1:
+        if categoria == '1':
             lista_palabrasecreta = general_dificil
 
-        if categoria == 2:
+        if categoria == '2':
             lista_palabrasecreta = acentos_dificil
 
-        if categoria == 3:
+        if categoria == '3':
             lista_palabrasecreta = compuestas_dificil
 
-        if categoria == 4:
+        if categoria == '4':
             lista_palabrasecreta = medicina_dificil
             
-        if categoria == 5:
+        if categoria == '5':
             lista_palabrasecreta = ciencia_dificil
 
-    if modo_juego == 3:
+    if modo_juego == '3':
 
-        if categoria == 1:
+        if categoria == '1':
             lista_palabrasecreta = general_contra_reloj_facil
 
-        if categoria == 2:
+        if categoria == '2':
             lista_palabrasecreta = acentos_contra_reloj_facil
 
-        if categoria == 3:
+        if categoria == '3':
             lista_palabrasecreta = compuestas_contra_reloj_facil
 
-        if categoria == 4:
+        if categoria == '4':
             lista_palabrasecreta = medicina_contra_reloj_facil
             
-        if categoria == 5:
+        if categoria == '5':
             lista_palabrasecreta = ciencia_contra_reloj_facil
 
-    if modo_juego == 4:
+    if modo_juego == '4':
 
-        if categoria == 1:
+        if categoria == '1':
             lista_palabrasecreta = general_contra_reloj_dificil
 
-        if categoria == 2:
+        if categoria == '2':
             lista_palabrasecreta = acentos_contra_reloj_dificil
 
-        if categoria == 3:
+        if categoria == '3':
             lista_palabrasecreta = compuestas_contra_reloj_dificil
 
-        if categoria == 4:
+        if categoria == '4':
             lista_palabrasecreta = medicina_contra_reloj_dificil
             
-        if categoria == 5:
+        if categoria == '5':
             lista_palabrasecreta = ciencia_contra_reloj_dificil
 
     lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()    # Copia de la lista de palabras secretas para quitar la palabra ya utilizada
@@ -240,72 +240,72 @@ if empezar.lower() == "s":
                     
                 if cambio_modo == "s" or cambio_categoria == "s":
 
-                    if modo_juego == 1:
-                    
-                        if categoria == 1:
+                    if modo_juego == '1':
+
+                        if categoria == '1':
                             lista_palabrasecreta = general_facil
-
-                        if categoria == 2:
+                
+                        if categoria == '2':
                             lista_palabrasecreta = acentos_facil
-
-                        if categoria == 3:
+                
+                        if categoria == '3':
                             lista_palabrasecreta = compuestas_facil
-
-                        if categoria == 4:
+                
+                        if categoria == '4':
                             lista_palabrasecreta = medicina_facil
-
-                        if categoria == 5:
+                
+                        if categoria == '5':
                             lista_palabrasecreta = ciencia_facil
-
-                    if modo_juego == 2:
+                        
+                    if modo_juego == '2':
                     
-                        if categoria == 1:
+                        if categoria == '1':
                             lista_palabrasecreta = general_dificil
-
-                        if categoria == 2:
+                
+                        if categoria == '2':
                             lista_palabrasecreta = acentos_dificil
-
-                        if categoria == 3:
+                
+                        if categoria == '3':
                             lista_palabrasecreta = compuestas_dificil
-
-                        if categoria == 4:
+                
+                        if categoria == '4':
                             lista_palabrasecreta = medicina_dificil
-
-                        if categoria == 5:
+                            
+                        if categoria == '5':
                             lista_palabrasecreta = ciencia_dificil
-
-                    if modo_juego == 3:
+                
+                    if modo_juego == '3':
                     
-                        if categoria == 1:
+                        if categoria == '1':
                             lista_palabrasecreta = general_contra_reloj_facil
-
-                        if categoria == 2:
+                
+                        if categoria == '2':
                             lista_palabrasecreta = acentos_contra_reloj_facil
-
-                        if categoria == 3:
+                
+                        if categoria == '3':
                             lista_palabrasecreta = compuestas_contra_reloj_facil
-
-                        if categoria == 4:
+                
+                        if categoria == '4':
                             lista_palabrasecreta = medicina_contra_reloj_facil
-
-                        if categoria == 5:
+                            
+                        if categoria == '5':
                             lista_palabrasecreta = ciencia_contra_reloj_facil
-
-                    if modo_juego == 4:
+                
+                    if modo_juego == '4':
                     
-                        if categoria == 1:
+                        if categoria == '1':
                             lista_palabrasecreta = general_contra_reloj_dificil
-
-                        if categoria == 2:
+                
+                        if categoria == '2':
                             lista_palabrasecreta = acentos_contra_reloj_dificil
-
-                        if categoria == 3:
+                
+                        if categoria == '3':
                             lista_palabrasecreta = compuestas_contra_reloj_dificil
-
-                        if categoria == 4:
+                
+                        if categoria == '4':
                             lista_palabrasecreta = medicina_contra_reloj_dificil
-
-                        if categoria == 5:
+                            
+                        if categoria == '5':
                             lista_palabrasecreta = ciencia_contra_reloj_dificil
                     
                     lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()
