@@ -33,6 +33,12 @@ compuestas_contra_reloj_facil = ["paraguas", "parasol", "sacapuntas", "abrelatas
 compuestas_contra_reloj_dificil = ["permanganato potásico", "celulosa poliglucosa", "noradrenalina norepinefrina", "testosterona andrógeno", "aspirina ácidoacetilsalicílico", "atropina alcaloide", "fenobarbital barbitúrico", "carbamazepina antiepiléptico", "estreptokinasa fibrinolítico", "montelukast antileucotrieno"]
 medicina_facil = ["estetoscopio", "articulación", "yodo", "alcohol", "aspirina", "suero", "oxígeno", "quirófano", "convulsión", "parálisis"]
 medicina_dificil = ["otorrinolaringología", "farmacogenética", "electroencefalograma", "electrocardiograma", "ecocardiograma", "hipoparatiroidismo", "hiperparatiroidismo", "diverticulitis", "peritonitis", "meningitis"]
+medicina_contra_reloj_facil = ["estetoscopio", "articulación", "yodo", "alcohol", "aspirina", "suero", "oxígeno", "quirófano", "convulsión", "parálisis"]
+medicina_contra_reloj_dificil = ["otorrinolaringología", "farmacogenética", "electroencefalograma", "electrocardiograma", "ecocardiograma", "hipoparatiroidismo", "hiperparatiroidismo", "diverticulitis", "peritonitis", "meningitis"]
+ciencia_facil = ["molécula", "electrón", "protón", "neutrón", "aceleración", "gravedad", "decantación", "flotación", "sedimentación", "cristalización"]
+ciencia_dificil = ["magnetohidrodinámica", "terahercios", "isótopo", "radioisótopo", "autótrofo", "heterótrofo", "protocélula", "endosimbiosis", "abiogénesis", "consanguinidad"]
+ciencia_contra_reloj_facil = ["molécula", "electrón", "protón", "neutrón", "aceleración", "gravedad", "decantación", "flotación", "sedimentación", "cristalización"]
+ciencia_contra_reloj_dificil = ["magnetohidrodinámica", "terahercios", "isótopo", "radioisótopo", "autótrofo", "heterótrofo", "protocélula", "endosimbiosis", "abiogénesis", "consanguinidad"]
 
 # Si el usuario quiere empezar a jugar, empezar el juego y mostrar los diferentes modos de juego
 if empezar.lower() == "s":
