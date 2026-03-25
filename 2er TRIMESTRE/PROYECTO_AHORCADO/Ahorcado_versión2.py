@@ -139,7 +139,7 @@ if empezar.lower() == "s":
 
     lista_palabrasecreta_no_utilizadas = lista_palabrasecreta.copy()    # Copia de la lista de palabras secretas para quitar la palabra ya utilizada
     palabra_secreta = random.choice(lista_palabrasecreta_no_utilizadas)   # Asignar de manera aleatoria una palabra de lsa lista a la palabra secreta
-    lista_palabrasecreta_no_utilizadas = lista_palabrasecreta_no_utilizadas.remove(palabra_secreta)    # Quitar la palabra secreta para que no se repita en las siguientes partidas
+    lista_palabrasecreta_no_utilizadas = [p for p in lista_palabrasecreta_no_utilizadas if p != palabra_secreta]   # Quitar la palabra secreta para que no se repita en las siguientes partidas
     lista_partida = []  # Lista donde se almacenan la longitud de la palabra secreta con sus respectivos espacios (_ _ _ _ _ _)
     lista_ahorcado = []    # Lista donde se almacenan las letras de la palabra ahorcado cada vez que cometes un error y se reinicia en cada palabra
     nueva_partida = "s"
@@ -244,67 +244,67 @@ if empezar.lower() == "s":
 
                         if categoria == '1':
                             lista_palabrasecreta = general_facil
-                
+
                         if categoria == '2':
                             lista_palabrasecreta = acentos_facil
-                
+
                         if categoria == '3':
                             lista_palabrasecreta = compuestas_facil
-                
+
                         if categoria == '4':
                             lista_palabrasecreta = medicina_facil
-                
+
                         if categoria == '5':
                             lista_palabrasecreta = ciencia_facil
-                        
+
                     if modo_juego == '2':
                     
                         if categoria == '1':
                             lista_palabrasecreta = general_dificil
-                
+
                         if categoria == '2':
                             lista_palabrasecreta = acentos_dificil
-                
+
                         if categoria == '3':
                             lista_palabrasecreta = compuestas_dificil
-                
+
                         if categoria == '4':
                             lista_palabrasecreta = medicina_dificil
-                            
+
                         if categoria == '5':
                             lista_palabrasecreta = ciencia_dificil
-                
+
                     if modo_juego == '3':
                     
                         if categoria == '1':
                             lista_palabrasecreta = general_contra_reloj_facil
-                
+
                         if categoria == '2':
                             lista_palabrasecreta = acentos_contra_reloj_facil
-                
+
                         if categoria == '3':
                             lista_palabrasecreta = compuestas_contra_reloj_facil
-                
+
                         if categoria == '4':
                             lista_palabrasecreta = medicina_contra_reloj_facil
-                            
+
                         if categoria == '5':
                             lista_palabrasecreta = ciencia_contra_reloj_facil
-                
+
                     if modo_juego == '4':
                     
                         if categoria == '1':
                             lista_palabrasecreta = general_contra_reloj_dificil
-                
+
                         if categoria == '2':
                             lista_palabrasecreta = acentos_contra_reloj_dificil
-                
+
                         if categoria == '3':
                             lista_palabrasecreta = compuestas_contra_reloj_dificil
-                
+
                         if categoria == '4':
                             lista_palabrasecreta = medicina_contra_reloj_dificil
-                            
+
                         if categoria == '5':
                             lista_palabrasecreta = ciencia_contra_reloj_dificil
                     
@@ -314,7 +314,7 @@ if empezar.lower() == "s":
                 errores = 0
                 aciertos = 0
                 palabra_secreta = random.choice(lista_palabrasecreta_no_utilizadas)
-                lista_palabrasecreta_no_utilizadas = lista_palabrasecreta_no_utilizadas.remove(palabra_secreta)
+                lista_palabrasecreta_no_utilizadas = [p for p in lista_palabrasecreta_no_utilizadas if p != palabra_secreta]
                 lista_partida = []
                 lista_ahorcado = []
                 lista_letras_partida = []
